@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use Analytics;
+use Carbon\Carbon;
 use Spatie\Analytics\Period;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -38,7 +39,7 @@ class BounceRateExport implements FromArray, WithMapping, ShouldAutoSize, WithHe
     public function map($rate): array
     {
          return [
-            date("d F, Y", $rate[0]),
+            Carbon::createFromFormat('Ymd', $rate[0])->format("d F, Y"),
             $rate[1],
         ];
     }
