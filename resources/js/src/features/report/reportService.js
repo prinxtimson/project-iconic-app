@@ -23,12 +23,12 @@ const trashedReport = async (id) => {
 };
 
 const restoredReport = async (id) => {
-    const res = await axios.delete(`${API_URL}/restored/${id}`);
+    const res = await axios.put(`${API_URL}/restored/${id}`);
     return res.data;
 };
 
 const deleteReport = async (id) => {
-    const res = await axios.post(`${API_URL}/delete/${id}`);
+    const res = await axios.delete(`${API_URL}/delete/${id}`);
     return res.data;
 };
 
