@@ -14,7 +14,7 @@ const initialState = {
     isError: false,
     isSuccess: false,
     isLoading: false,
-    message: "",
+    message: null,
 };
 
 // Register user
@@ -389,7 +389,7 @@ export const authSlice = createSlice({
             state.isError = false;
             state.isLoading = false;
             state.isSuccess = false;
-            state.message = "";
+            state.message = null;
         },
         clearUser: (state) => {
             state.user = null;

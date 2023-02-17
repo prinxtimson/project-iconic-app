@@ -55,7 +55,7 @@ const UsersTable = () => {
         try {
             const res = await axios.get("/api/users");
             const filteredUser = res.data.filter(
-                (item) => item.roles[0].name == "user"
+                (item) => item.roles[0] && item.roles[0]?.name == "user"
             );
             setUsers(filteredUser);
             setData(filteredUser);
