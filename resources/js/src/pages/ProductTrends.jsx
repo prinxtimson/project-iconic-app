@@ -20,6 +20,7 @@ const ProductTrends = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Product Trends Page";
         dispatch(getAllSubscription());
     }, []);
 

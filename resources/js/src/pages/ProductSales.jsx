@@ -20,6 +20,7 @@ const ProductSales = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Product Sale Page";
         dispatch(getAllSubscription());
     }, []);
 

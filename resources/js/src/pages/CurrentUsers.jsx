@@ -20,6 +20,7 @@ const CurrentUsers = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Current User Page";
         dispatch(getUserType(7));
     }, []);
 

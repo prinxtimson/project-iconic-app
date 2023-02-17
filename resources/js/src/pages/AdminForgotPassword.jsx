@@ -20,6 +20,7 @@ const AdminForgotPassword = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Forgot Password Page";
     }, []);
 
     useEffect(() => {
@@ -29,7 +30,7 @@ const AdminForgotPassword = () => {
 
         if (isSuccess) {
             setEmail("");
-            toast.success(message);
+            message && toast.success(message);
         }
     }, [isError, isSuccess, message, dispatch]);
 

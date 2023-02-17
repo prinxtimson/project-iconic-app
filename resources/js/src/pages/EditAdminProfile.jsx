@@ -26,6 +26,7 @@ const EditAdminProfile = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Review Profile Page";
     }, []);
 
     useEffect(() => {
@@ -34,7 +35,7 @@ const EditAdminProfile = () => {
         }, 3000);
 
         if (isSuccess) {
-            toast.success(message);
+            message && toast.success(message);
         }
     }, [user, isError, isSuccess, message, dispatch]);
 
@@ -75,15 +76,17 @@ const EditAdminProfile = () => {
 
     return (
         <AdminDashboardContainer>
-            <div className="container-fluid">
+            <div className="container">
+                <div className="my-4">
+                    <h1 className="card-title text-primary text-center">
+                        {t("title")}
+                    </h1>
+                </div>
                 <div
                     className="card my-5 m-auto p-2"
                     style={{ maxWidth: "440px" }}
                 >
                     <div className="card-body">
-                        <h1 className="card-title text-primary text-center">
-                            {t("title")}
-                        </h1>
                         {isError && (
                             <div
                                 className={`alert alert-danger py-2`}

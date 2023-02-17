@@ -13,6 +13,7 @@ const PrivacyPolicy = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Privacy Policy Page";
     }, []);
 
     return (

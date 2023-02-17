@@ -8,6 +8,7 @@ const Solution = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Solution Page";
     }, []);
 
     return (

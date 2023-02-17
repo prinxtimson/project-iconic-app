@@ -17,6 +17,7 @@ const ArchiveFeedback = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Archived Feedback Page";
         dispatch(getFeedbacks());
     }, []);
 

@@ -20,6 +20,7 @@ const FeedbackTable = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Feedback Page";
         dispatch(getFeedbacks());
     }, []);
 

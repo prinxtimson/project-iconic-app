@@ -1,8 +1,14 @@
 import { useState } from "react";
+import ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 import DashboardContainer from "../components/DashboardContainer";
 
 const ProductCatalogue = () => {
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+        document.title = "Product Catalogue Page";
+    }, []);
+
     return (
         <DashboardContainer>
             <div className="container-fluid p-4">

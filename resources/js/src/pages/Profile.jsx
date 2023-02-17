@@ -25,6 +25,7 @@ const Profile = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Profile Page";
     }, []);
 
     useEffect(() => {

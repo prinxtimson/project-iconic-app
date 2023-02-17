@@ -27,19 +27,22 @@ const UsersTable = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "User Table Page";
         getUsers();
     }, []);
 
     useEffect(() => {
-        if (isSuccess) {
-            toast.success(message);
-            getUsers();
+        setTimeout(() => {
             dispatch(reset());
+        }, 3000);
+
+        if (isSuccess) {
+            message && toast.success(message);
+            getUsers();
         }
 
         if (isError) {
-            toast.error(message);
-            dispatch(reset());
+            message && toast.error(message);
         }
 
         if (alert && alert.type == "danger") {
@@ -51,9 +54,11 @@ const UsersTable = () => {
     const getUsers = async () => {
         try {
             const res = await axios.get("/api/users");
-
-            setUsers(res.data);
-            setData(res.data);
+            const filteredUser = res.data.filter(
+                (item) => item.roles[0].name == "user"
+            );
+            setUsers(filteredUser);
+            setData(filteredUser);
             setLoading(false);
         } catch (err) {
             console.log(err.response);
@@ -91,7 +96,12 @@ const UsersTable = () => {
     const handleDeactivateUser = (id) => dispatch(deactivateUser(id));
 
     return (
-        <div className="container py-5">
+        <div className="container">
+            <div className="my-5">
+                <h1 className="card-title text-primary text-center">
+                    View User Activities
+                </h1>
+            </div>
             {loading ? (
                 <p className="py-5">{t("users_table.loading")}........</p>
             ) : (

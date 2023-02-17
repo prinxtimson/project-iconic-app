@@ -25,6 +25,7 @@ const AdminLogin = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Admin Login Page";
         setFormData({
             email: localStorage.getItem("maxximo_user_email") || "",
             password: localStorage.getItem("maxximo_user_pass") || "",
@@ -37,7 +38,6 @@ const AdminLogin = () => {
         }, 3000);
 
         if (isSuccess) {
-            dispatch(reset());
             if (user && user.email_verified_at) {
                 navigate("/admin/two-factor-auth", { replace: true });
             } else {

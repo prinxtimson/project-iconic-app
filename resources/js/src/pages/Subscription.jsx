@@ -12,6 +12,7 @@ const Subscription = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Subscription Page";
     }, []);
 
     return (

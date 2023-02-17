@@ -8,6 +8,7 @@ const AboutUs = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "About Us Page";
     }, []);
 
     return (

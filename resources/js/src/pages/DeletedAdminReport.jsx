@@ -24,7 +24,7 @@ const DeletedAdminReport = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
-        document.title = "Export Report";
+        document.title = "Deleted Report Page";
     }, []);
 
     useEffect(() => {
@@ -33,14 +33,13 @@ const DeletedAdminReport = () => {
     }, [reports]);
 
     useEffect(() => {
-        if (isSuccess) {
-            toast.success(message);
+        setTimeout(() => {
             dispatch(reset());
-            dispatch(getReports());
-        }
+        }, 3000);
 
-        if (isError) {
-            dispatch(reset());
+        if (isSuccess) {
+            message && toast.success(message);
+            dispatch(getReports());
         }
     }, [isSuccess, isError]);
 
@@ -53,7 +52,7 @@ const DeletedAdminReport = () => {
             <div className="container-fluid p-4">
                 <div className="row align-items-center">
                     <div className="col">
-                        <h1 className=" text-primary text-center">
+                        <h1 className=" text-primary text-center my-4">
                             Deleted Report
                         </h1>
                         {isError && (

@@ -12,20 +12,22 @@ const AdminProfile = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Profile Page";
     }, []);
 
     return (
         <AdminDashboardContainer>
-            <div className="container-fluid">
+            <div className="container">
+                <div className="my-4">
+                    <h1 className="card-title text-primary text-center">
+                        Admin Profile
+                    </h1>
+                </div>
                 <div
                     className="card my-5 m-auto p-2"
                     style={{ maxWidth: "440px" }}
                 >
                     <div className="card-body">
-                        <h1 className="card-title text-primary text-center">
-                            Admin Profile
-                        </h1>
-
                         <div className="form row g-3">
                             {!isLoading && (
                                 <>

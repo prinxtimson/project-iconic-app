@@ -25,6 +25,7 @@ const Login = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Login Page";
         setFormData({
             email: localStorage.getItem("maxximo_user_email") || "",
             password: localStorage.getItem("maxximo_user_pass") || "",

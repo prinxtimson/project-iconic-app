@@ -29,6 +29,7 @@ const AdminRegistration = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Admin Registration Page";
     }, []);
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const AdminRegistration = () => {
         }, 3000);
 
         if (isSuccess) {
-            toast.success(message);
+            message && toast.success(message);
             navigate("/email/verify");
         }
     }, [user, isError, isSuccess, message, dispatch]);

@@ -47,7 +47,7 @@ const AdminReport = () => {
         dispatch(getCountry(period));
         dispatch(getDuration(period));
         dispatch(getPageVisit(period));
-        document.title = "Visit Chart";
+        document.title = "Report Analytics Page";
 
         return () => dispatch(clearAnalytics());
     }, []);

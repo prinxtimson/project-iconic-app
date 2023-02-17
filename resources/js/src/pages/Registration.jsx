@@ -24,6 +24,7 @@ const Registration = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Registration Page";
     }, []);
 
     useEffect(() => {

@@ -24,7 +24,7 @@ const ArchivedAdminReport = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
-        document.title = "Export Report";
+        document.title = "Archived Report Page";
     }, []);
 
     useEffect(() => {
@@ -35,14 +35,13 @@ const ArchivedAdminReport = () => {
     }, [reports]);
 
     useEffect(() => {
-        if (isSuccess) {
-            toast.success(message);
+        setTimeout(() => {
             dispatch(reset());
-            dispatch(getReports());
-        }
+        }, 3000);
 
-        if (isError) {
-            dispatch(reset());
+        if (isSuccess) {
+            message && toast.success(message);
+            dispatch(getReports());
         }
     }, [isSuccess, isError]);
 
@@ -55,7 +54,7 @@ const ArchivedAdminReport = () => {
             <div className="container-fluid p-4">
                 <div className="row align-items-center">
                     <div className="col">
-                        <h1 className=" text-primary text-center">
+                        <h1 className=" text-primary text-center mb-5">
                             Archive Report
                         </h1>
                         {isError && (

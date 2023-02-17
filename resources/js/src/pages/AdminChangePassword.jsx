@@ -43,25 +43,28 @@ const AdminChangePassword = () => {
                 new_password: "",
                 new_password_confirmation: "",
             });
-            toast.success(message);
+            message && toast.success(message);
         }
     }, [isError, isSuccess, message, dispatch]);
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Change Password Page";
     }, []);
 
     return (
         <AdminDashboardContainer>
-            <div className="bg-white">
+            <div className="container">
+                <div className="">
+                    <h1 className="card-title text-primary text-center my-4">
+                        {t("title")}
+                    </h1>
+                </div>
                 <div
                     className="card my-5 m-auto p-2"
                     style={{ maxWidth: "540px" }}
                 >
                     <div className="card-body">
-                        <h1 className="card-title text-primary text-center mb-4">
-                            {t("title")}
-                        </h1>
                         {isError && (
                             <div
                                 className={`alert alert-danger py-2`}
@@ -84,6 +87,7 @@ const AdminChangePassword = () => {
                                         onChange={handleOnChange}
                                         id="floatingInput"
                                         value={password}
+                                        autoComplete="new-password"
                                         required
                                     />
                                     <label htmlFor="floatingInput">

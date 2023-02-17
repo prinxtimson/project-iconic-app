@@ -37,7 +37,7 @@ const AdminResetPassword = () => {
         }, 3000);
 
         if (isSuccess) {
-            toast.success(message);
+            message && toast.success(message);
             setFormData({
                 ...formData,
                 password: "",
@@ -55,6 +55,7 @@ const AdminResetPassword = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Reset Password Page";
     }, []);
 
     return (

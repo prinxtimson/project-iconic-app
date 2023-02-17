@@ -12,6 +12,7 @@ const AdminHome = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Admin Home Page";
     }, []);
 
     return (

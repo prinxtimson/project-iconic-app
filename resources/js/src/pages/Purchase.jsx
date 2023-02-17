@@ -15,6 +15,7 @@ const Purchase = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Purchase Page";
     }, []);
 
     return (

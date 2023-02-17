@@ -13,6 +13,7 @@ const TermsAndConditions = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Terms And Conditions Page";
     }, []);
 
     return (

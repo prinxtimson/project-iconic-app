@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import ReactGA from "react-ga";
 import AdminContainer from "../components/AdminContainer";
 import {
     verifyCode,
@@ -32,14 +33,17 @@ const AdminTwoFactorAuth = () => {
     }, [user]);
 
     useEffect(() => {
-        dispatch(reset());
+        ReactGA.pageview(window.location.pathname);
+        document.title = "Two Factor Auth Page";
+    }, []);
+
+    useEffect(() => {
         setTimeout(() => {
             dispatch(reset());
         }, 3000);
 
         if (isSuccess) {
-            toast.success(message);
-            dispatch(reset());
+            message && toast.success(message);
             navigate("/admin/dashboard", { replace: true });
         }
     }, [isError, isSuccess, message, navigate, dispatch]);

@@ -40,6 +40,7 @@ const AdminSettings = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Settings Page";
     }, []);
 
     useEffect(() => {
@@ -48,7 +49,7 @@ const AdminSettings = () => {
         }, 3000);
 
         if (isSuccess) {
-            toast.success(message);
+            message && toast.success(message);
             i18next.changeLanguage(data.language);
         }
     }, [user, isError, isSuccess, message, dispatch]);
@@ -71,15 +72,17 @@ const AdminSettings = () => {
 
     return (
         <AdminDashboardContainer>
-            <div className="bg-white">
+            <div className="container">
+                <div className="my-4">
+                    <h1 className="card-title text-primary text-center mb-5">
+                        Settings
+                    </h1>
+                </div>
                 <div
                     className="card my-5 m-auto p-2"
                     style={{ maxWidth: "540px" }}
                 >
                     <div className="card-body">
-                        <h1 className="card-title text-primary text-center mb-4">
-                            Settings
-                        </h1>
                         {isError && (
                             <div
                                 className={`alert alert-danger py-2`}

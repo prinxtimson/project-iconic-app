@@ -54,6 +54,11 @@ const SubscriptionTable = () => {
 
     return (
         <div className="container p-4">
+            <div className="my-4">
+                <h1 className="card-title text-primary text-center">
+                    Manage Subscription
+                </h1>
+            </div>
             <div className="card">
                 <div className="card-body">
                     <div className="table-responsive">

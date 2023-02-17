@@ -53,6 +53,7 @@ const ResetPassword = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Reset Password Page";
     }, []);
 
     return (

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
+import ReactGA from "react-ga";
 import DashboardContainer from "../components/DashboardContainer";
 import BookMeetingDialog from "../components/BookMeetingDialog";
 import { clear, getBookings } from "../features/booking/bookingSlice";
@@ -30,6 +31,11 @@ const MeetingCalendar = () => {
         dispatch(getBookings());
 
         return () => dispatch(clear());
+    }, []);
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+        document.title = "Two Factor Auth Page";
     }, []);
 
     const handleDateClick = (val, e) => {

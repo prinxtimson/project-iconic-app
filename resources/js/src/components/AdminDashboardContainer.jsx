@@ -7,6 +7,7 @@ import searchData from "../utils/searchData";
 import SearchDialog from "./SearchDialog";
 import Moment from "react-moment";
 import AdminFooter from "./AdminFooter";
+import OffcanvasNavbar from "./OffcanvasNavbar";
 
 const AdminDashboardContainer = ({ children }) => {
     const { t } = useTranslation(["dashboard"]);
@@ -88,15 +89,11 @@ const AdminDashboardContainer = ({ children }) => {
                     </div>
                 )}
             </div>
-
-            <div className="wrapper d-flex align-items-stretch flex-grow-1">
-                <nav
-                    className={`sidebar flex-column flex-shrink-0 px-3 py-2 text-white d-xl-flex ${
-                        isActive ? "d-flex" : "d-none"
-                    }`}
-                    style={{ backgroundColor: "#00a7ad", minWidth: 250 }}
-                    id="sidebarMenu"
-                >
+            <nav
+                className="navbar navbar-light bg-white py-0 "
+                style={{ minHeight: 60 }}
+            >
+                <div className="container-fluid px-3">
                     <Link
                         id="brand"
                         className="navbar-brand mx-auto"
@@ -109,397 +106,427 @@ const AdminDashboardContainer = ({ children }) => {
                             height="68"
                         />
                     </Link>
-                    <ul className="nav nav-pills flex-column mb-auto py-5">
-                        <li className="">
-                            <Link
-                                to="/admin/dashboard"
-                                className={` nav-link fw-bold ${
-                                    window.location.pathname ===
-                                    "/admin/dashboard"
-                                        ? "active-tab bg-white"
-                                        : "text-white"
-                                }`}
-                                aria-current="page"
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <button
-                                className={`btn nav-link fw-bold ${
-                                    window.location.pathname ===
-                                    "/admin/dashboard/analytics"
-                                        ? "active-tab bg-white"
-                                        : "text-white"
-                                }`}
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#analytics"
-                                aria-expanded="false"
-                                aria-controls="analytics"
-                            >
-                                Analytics
-                            </button>
-                            <div className="collapse" id="analytics">
-                                <ul className="nav nav-pills flex-column mb-auto">
-                                    <li className="ps-3">
+
+                    <OffcanvasNavbar user={user} />
+                    <div className="flex-grow-1 py-2">
+                        <ul className="navbar-nav d-lg-flex flex-row d-none">
+                            <li className="nav-item mx-2">
+                                <Link
+                                    to="/admin/dashboard"
+                                    className={` nav-link fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard"
+                                            ? "active"
+                                            : ""
+                                    }`}
+                                    aria-current="page"
+                                >
+                                    Home
+                                </Link>
+                            </li>
+                            <li className="nav-item mx-2 dropdown">
+                                <a
+                                    className={` nav-link fw-bold dropdown-toggle ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard/analytics"
+                                            ? "active"
+                                            : ""
+                                    }`}
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Analytics
+                                </a>
+
+                                <ul className="dropdown-menu">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/analytics"
-                                            className="nav-link text-white"
+                                            className="dropdown-item"
                                         >
                                             Generate Report
                                         </Link>
                                     </li>
-                                    <li className="ps-3">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/analytics/export-report"
-                                            className="nav-link text-white"
+                                            className="dropdown-item "
                                         >
                                             Export Report
                                         </Link>
                                     </li>
-                                    <li className="ps-3">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/analytics/archived-report"
-                                            className="nav-link text-white"
+                                            className="dropdown-item "
                                         >
                                             Archived Report
                                         </Link>
                                     </li>
-                                    <li className="ps-3">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/analytics/deleted-report"
-                                            className="nav-link text-white"
+                                            className="dropdown-item"
                                         >
                                             Deleted Report
                                         </Link>
                                     </li>
                                 </ul>
-                            </div>
-                        </li>
+                            </li>
+                            <li className="nav-item dropdown mx-2">
+                                <a
+                                    className={` nav-link fw-bold dropdown-toggle ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard/manage-account"
+                                            ? "active"
+                                            : ""
+                                    }`}
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Manage Account
+                                </a>
 
-                        <li>
-                            <button
-                                className={`btn nav-link fw-bold ${
-                                    window.location.pathname ===
-                                    "/admin/dashboard/manage-account"
-                                        ? "active-tab bg-white"
-                                        : "text-white"
-                                }`}
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapseExample"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                            >
-                                Manage Account
-                            </button>
-                            <div className="collapse" id="collapseExample">
-                                <ul className="nav nav-pills flex-column mb-auto">
-                                    <li className="ps-3">
+                                <ul className="dropdown-menu">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/manage-account"
-                                            className="nav-link text-white"
+                                            className="dropdown-item"
                                         >
                                             Profile
                                         </Link>
                                     </li>
-                                    <li className="ps-3">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/manage-account/edit-profile"
-                                            className="nav-link text-white"
+                                            className="dropdown-item"
                                         >
                                             Review Profile
                                         </Link>
                                     </li>
-                                    <li className="ps-3">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/manage-account/change-password"
-                                            className="nav-link text-white"
+                                            className="dropdown-item"
                                         >
                                             Change Password
                                         </Link>
                                     </li>
-                                    <li className="ps-3">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/manage-account/delete-account"
-                                            className="nav-link text-white"
+                                            className="dropdown-item"
                                         >
                                             Delete Admin Account
                                         </Link>
                                     </li>
                                 </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <button
-                                className={`btn nav-link fw-bold ${
-                                    window.location.pathname ===
-                                    "/admin/dashboard/manage-users"
-                                        ? "active-tab bg-white"
-                                        : "text-white"
-                                }`}
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#manageUsers"
-                                aria-expanded="false"
-                                aria-controls="manageUsers"
-                            >
-                                Manage Users
-                            </button>
-                            <div className="collapse" id="manageUsers">
-                                <ul className="nav nav-pills flex-column mb-auto">
-                                    <li className="ps-3">
-                                        <Link
-                                            to="/admin/dashboard/manage-users"
-                                            className="nav-link text-white"
-                                        >
-                                            View Users
-                                        </Link>
-                                    </li>
-                                    <li className="ps-3">
+                            </li>
+                            <li className="nav-item dropdown mx-2">
+                                <a
+                                    className={`nav-link dropdown-toggle fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard/manage-users"
+                                            ? "active"
+                                            : "text"
+                                    }`}
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Manage Subscription
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li>
                                         <Link
                                             to="/admin/dashboard/manage-users/subscription"
-                                            className="nav-link text-white"
+                                            className="dropdown-item"
                                         >
                                             Manage Subscription
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link
+                                            to="/admin/dashboard/manage-users"
+                                            className="dropdown-item"
+                                        >
+                                            View Users Activities
+                                        </Link>
+                                    </li>
                                 </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <Link
-                                to="/admin/dashboard/settings"
-                                className={`nav-link fw-bold ${
-                                    routeName === "/admin/dashboardsettings"
-                                        ? "active-tab"
-                                        : "text-white"
-                                }`}
-                            >
-                                Settings
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-
-                <main className="flex-grow-1 d-flex flex-column">
-                    <nav
-                        className="navbar navbar-light bg-white py-0"
-                        style={{ minHeight: 60 }}
-                    >
-                        <div className="container-fluid px-3">
-                            <button
-                                className="navbar-toggler mx-2 d-xl-none"
-                                id="sidebarCollapse"
-                                type="button"
-                                onClick={handleToggle}
-                            >
-                                <span className="navbar-toggler-icon text-primary"></span>
-                            </button>
-                            <Link
-                                id="brand"
-                                className={`navbar-brand d-xl-none ${
-                                    isActive ? "d-none" : "d-block"
-                                }`}
-                                to="/admin/dashboard"
-                            >
-                                <img
-                                    src="/images/Elint_x.png"
-                                    alt="Elint X"
-                                    width="69"
-                                    height="68"
-                                />
-                            </Link>
-                            <div className="flex-grow-1 py-2"></div>
-                            <div className="flex-shrink-0 d-flex align-items-center">
-                                <div className="me-2 dropdown">
-                                    <a
-                                        className="d-none dropdown-toggle"
-                                        type="button"
-                                        ref={dropBtnRef}
-                                        id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        data-bs-auto-close="false"
-                                        data-bs-display="static"
-                                    ></a>
-                                    <div className="input-group">
-                                        <input
-                                            className="form-control"
-                                            type="search"
-                                            placeholder="Search"
-                                            aria-label="Search"
-                                            value={searchText}
-                                            onChange={(e) =>
-                                                setSearchText(e.target.value)
-                                            }
-                                        />
-                                        <button
-                                            className="btn btn-outline-secondary"
-                                            type="submit"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#searchModal"
-                                            onClick={handleSearch}
-                                        >
-                                            <i className="bi bi-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                {/* <div
-                                    className="me-2 dropdown-center"
-                                    id="notificationMenu"
+                            </li>
+                            <li className="nav-item mx-2">
+                                <Link
+                                    to="/admin/dashboard/settings"
+                                    className={`nav-link fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboardsettings"
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
-                                    <a
-                                        className="d-none dropdown-toggle"
-                                        type="button"
-                                        ref={dropBellRef}
-                                        id="dropdownMenuNotifcation"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        data-bs-auto-close="false"
-                                        data-bs-display="static"
-                                    ></a>
-                                    <div className="position-relative me-2">
-                                        <button
-                                            type="button"
-                                            className="btn btn-lg"
-                                            onClick={() =>
-                                                dropBellRef.current.click()
-                                            }
-                                        >
-                                            <i
-                                                className="bi bi-bell-fill"
-                                                style={{ fontSize: 20 }}
-                                            ></i>
+                                    Settings
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
 
-                                            <span
-                                                className="position-absolute  translate-middle badge rounded-pill bg-danger"
-                                                style={{ top: 10, left: 40 }}
-                                            >
-                                                {user?.unread_notifications
-                                                    .length || 0}
-                                                <span className="visually-hidden">
-                                                    unread messages
-                                                </span>
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <ul
-                                        className="dropdown-menu dropdown-menu-end overflow-auto"
-                                        aria-labelledby="dropdownMenuNotifcation"
-                                        style={{
-                                            minWidth: 320,
-                                            maxHeight: 400,
-                                        }}
-                                    >
-                                        {user?.notifications?.length > 0 ? (
-                                            user?.notifications.map((item) =>
-                                                item.type ==
-                                                "App\\Notifications\\ProfileUpdated" ? (
-                                                    <li
-                                                        key={item.id}
-                                                        className="list-group"
-                                                    >
-                                                        <div
-                                                            className={`list-group-item ${
-                                                                !item.read_at &&
-                                                                "list-group-item-primary"
-                                                            }`}
-                                                        >
-                                                            <div className="d-flex w-100 justify-content-between">
-                                                                <h5 className="mb-1">
-                                                                    Profile
-                                                                    update
-                                                                </h5>
-                                                                <small>
-                                                                    <Moment
-                                                                        fromNow
-                                                                    >
-                                                                        {
-                                                                            item.created_at
-                                                                        }
-                                                                    </Moment>
-                                                                </small>
-                                                            </div>
-
-                                                            <p className="">
-                                                                Profile was
-                                                                updated
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                ) : item.type ==
-                                                  "App\\Notifications\\ReportShare" ? (
-                                                    <li
-                                                        key={item.id}
-                                                        className="list-group"
-                                                    >
-                                                        <div
-                                                            className={`list-group-item ${
-                                                                !item.read_at &&
-                                                                "list-group-item-primary"
-                                                            }`}
-                                                        >
-                                                            <div className="d-flex w-100 justify-content-between">
-                                                                <h5 className="mb-1">
-                                                                    Report Share
-                                                                </h5>
-                                                                <small>
-                                                                    <Moment
-                                                                        fromNow
-                                                                    >
-                                                                        {
-                                                                            item.created_at
-                                                                        }
-                                                                    </Moment>
-                                                                </small>
-                                                            </div>
-
-                                                            <p className="">
-                                                                Report had been
-                                                                shared with{" "}
-                                                                {item.data
-                                                                    ?.email ||
-                                                                    item.email}
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                ) : null
-                                            )
-                                        ) : (
-                                            <li>
-                                                <p className="px-3">
-                                                    No new notification
-                                                </p>
-                                            </li>
-                                        )}
-                                    </ul>
-                                </div> */}
-
-                                <div className="d-flex mx-2 align-items-center">
-                                    <img
-                                        src={user?.avatar}
-                                        alt={user?.name}
-                                        className="rounded-circle me-2"
-                                        width="32"
-                                        height="32"
-                                    />
-                                    <a
-                                        className="btn nav-link text-dark fw-bold mx-4"
-                                        href="#"
-                                        type="button"
-                                        onClick={() => dispatch(logout())}
-                                    >
-                                        Logout
-                                    </a>
-                                </div>
+                    <div className="flex-shrink-0 d-flex align-items-center">
+                        <div className="me-2 dropdown">
+                            <a
+                                className="d-none dropdown-toggle"
+                                type="button"
+                                ref={dropBtnRef}
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                data-bs-auto-close="false"
+                                data-bs-display="static"
+                            ></a>
+                            <div className="input-group">
+                                <input
+                                    className="form-control"
+                                    type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"
+                                    value={searchText}
+                                    onChange={(e) =>
+                                        setSearchText(e.target.value)
+                                    }
+                                />
+                                <button
+                                    className="btn btn-outline-secondary"
+                                    type="submit"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#searchModal"
+                                    onClick={handleSearch}
+                                >
+                                    <i className="bi bi-search"></i>
+                                </button>
                             </div>
                         </div>
-                    </nav>
-                    <div className="flex-grow-1">{children}</div>
 
-                    <AdminFooter dark={true} />
+                        <div className="d-flex mx-2 align-items-center">
+                            <img
+                                src={user?.avatar}
+                                alt={user?.name}
+                                className="rounded-circle me-2"
+                                width="32"
+                                height="32"
+                            />
+                            <a
+                                className="btn nav-link text-dark fw-bold mx-4"
+                                href="#"
+                                type="button"
+                                onClick={() => dispatch(logout())}
+                            >
+                                Logout
+                            </a>
+                        </div>
+                        <button
+                            className="navbar-toggler d-lg-none d-flex"
+                            type="button"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar"
+                            aria-controls="offcanvasNavbar"
+                        >
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <div className=" flex-grow-1 d-flex">
+                <main className="flex-grow-1 wrapper d-flex align-items-stretch">
+                    <nav
+                        className={`sidebar flex-column flex-shrink-0 px-3 py-2 text-white d-lg-flex d-none bg-white `}
+                        style={{ minWidth: 250 }}
+                        id="sidebarMenu"
+                    >
+                        <ul className="nav nav-pills flex-column mb-auto py-5">
+                            <li className="">
+                                <Link
+                                    to="/admin/dashboard"
+                                    className={` nav-link fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard"
+                                            ? "active-tab"
+                                            : ""
+                                    }`}
+                                    aria-current="page"
+                                >
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <button
+                                    className={`btn nav-link fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard/analytics"
+                                            ? "active-tab"
+                                            : ""
+                                    }`}
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#analytics"
+                                    aria-expanded="false"
+                                    aria-controls="analytics"
+                                >
+                                    Analytics
+                                </button>
+                                <div className="collapse" id="analytics">
+                                    <ul className="nav nav-pills flex-column mb-auto">
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/analytics"
+                                                className="nav-link"
+                                            >
+                                                Generate Report
+                                            </Link>
+                                        </li>
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/analytics/export-report"
+                                                className="nav-link "
+                                            >
+                                                Export Report
+                                            </Link>
+                                        </li>
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/analytics/archived-report"
+                                                className="nav-link "
+                                            >
+                                                Archived Report
+                                            </Link>
+                                        </li>
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/analytics/deleted-report"
+                                                className="nav-link "
+                                            >
+                                                Deleted Report
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <button
+                                    className={`btn nav-link fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard/manage-account"
+                                            ? "active-tab"
+                                            : ""
+                                    }`}
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapseExample"
+                                    aria-expanded="false"
+                                    aria-controls="collapseExample"
+                                >
+                                    Manage Account
+                                </button>
+                                <div className="collapse" id="collapseExample">
+                                    <ul className="nav nav-pills flex-column mb-auto">
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/manage-account"
+                                                className="nav-link "
+                                            >
+                                                Profile
+                                            </Link>
+                                        </li>
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/manage-account/edit-profile"
+                                                className="nav-link "
+                                            >
+                                                Review Profile
+                                            </Link>
+                                        </li>
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/manage-account/change-password"
+                                                className="nav-link "
+                                            >
+                                                Change Password
+                                            </Link>
+                                        </li>
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/manage-account/delete-account"
+                                                className="nav-link "
+                                            >
+                                                Delete Admin Account
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button
+                                    className={`btn nav-link fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboard/manage-users"
+                                            ? "active-tab"
+                                            : ""
+                                    }`}
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#manageUsers"
+                                    aria-expanded="false"
+                                    aria-controls="manageUsers"
+                                >
+                                    Manage Subscription
+                                </button>
+                                <div className="collapse" id="manageUsers">
+                                    <ul className="nav nav-pills flex-column mb-auto">
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/manage-users/subscription"
+                                                className="nav-link "
+                                            >
+                                                Manage Subscription
+                                            </Link>
+                                        </li>
+                                        <li className="ps-3">
+                                            <Link
+                                                to="/admin/dashboard/manage-users"
+                                                className="nav-link "
+                                            >
+                                                View Users Activities
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/admin/dashboard/settings"
+                                    className={`nav-link fw-bold ${
+                                        window.location.pathname ===
+                                        "/admin/dashboardsettings"
+                                            ? "active-tab"
+                                            : ""
+                                    }`}
+                                >
+                                    Settings
+                                </Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div className="flex-grow-1 d-flex flex-column">
+                        <div className="flex-grow-1">{children}</div>
+
+                        <AdminFooter dark={true} />
+                    </div>
                 </main>
             </div>
         </div>

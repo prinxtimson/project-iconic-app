@@ -19,6 +19,7 @@ const ContactUs = () => {
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Change Password Page";
     }, []);
 
     const { name, email, message } = formData;

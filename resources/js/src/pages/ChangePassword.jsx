@@ -43,12 +43,13 @@ const ChangePassword = () => {
                 new_password: "",
                 new_password_confirmation: "",
             });
-            toast.success(message);
+            message && toast.success(message);
         }
     }, [isError, isSuccess, message, dispatch]);
 
     useEffect(() => {
         ReactGA.pageview(window.location.pathname);
+        document.title = "Change Password Page";
     }, []);
 
     return (

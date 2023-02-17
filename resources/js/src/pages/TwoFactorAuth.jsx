@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import ReactGA from "react-ga";
 
 import {
     verifyCode,
@@ -44,6 +45,11 @@ const TwoFactorAuth = () => {
         e.preventDefault();
         dispatch(verifyCode(data));
     };
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+        document.title = "Two Factor Auth Page";
+    }, []);
 
     return (
         <div className="container-fluid bg-white">
