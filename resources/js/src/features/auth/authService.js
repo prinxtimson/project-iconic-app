@@ -5,10 +5,6 @@ const API_URL = "/api";
 const register = async (userData) => {
     const res = await axios.post(`${API_URL}/register`, userData);
 
-    if (res.data) {
-        localStorage.setItem("elintx-user", JSON.stringify(res.data.user));
-    }
-
     return res.data;
 };
 

@@ -64,16 +64,8 @@ class UserController extends Controller
             $user->assignRole('user');
         }
 
-        Auth::login($user);
-
-        $token = $user->createToken('access_token')->plainTextToken;
-        auth()->user()->load(['roles', 'profile', 'setting']);
-        auth()->user()->notifications;
-        auth()->user()->unreadNotifications;
-
         $response = [
-            'token' => $token,
-            'user' => auth()->user()
+            'message' => 'Registration successful'
         ];
 
         return $response;
