@@ -34,6 +34,12 @@ const Registration = () => {
 
         if (isSuccess) {
             message && toast.success(message);
+            setFormData({
+                name: "",
+                email: "",
+                password: "",
+                password_confirmation: "",
+            });
         }
     }, [user, isError, isSuccess, message, dispatch]);
 
