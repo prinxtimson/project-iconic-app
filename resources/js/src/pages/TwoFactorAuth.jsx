@@ -31,7 +31,6 @@ const TwoFactorAuth = () => {
 
         if (isSuccess) {
             toast.success(message);
-            dispatch(reset());
             dispatch(getCurrentUser());
             navigate("/dashboard", { replace: true });
         }

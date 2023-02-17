@@ -33,7 +33,7 @@ const Registration = () => {
         }, 3000);
 
         if (isSuccess) {
-            navigate("/two-factor-auth");
+            message && toast.success(message);
         }
     }, [user, isError, isSuccess, message, dispatch]);
 
