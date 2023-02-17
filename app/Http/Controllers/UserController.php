@@ -49,7 +49,7 @@ class UserController extends Controller
 
         $user->profile()->create([
             'name' => $fields['name'],
-            'dob' => $fields['dob'] ?? ""
+            'dob' => $fields['dob'] ?? null
         ]);
 
         $user->setting()->create([
