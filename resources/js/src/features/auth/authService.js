@@ -102,7 +102,7 @@ const resendVerification = async () => {
 };
 
 const deleteAccount = async () => {
-    const res = await axios.delete(`/delete-account`);
+    const res = await axios.delete(`${API_URL}/delete-account`);
 
     return res.data;
 };

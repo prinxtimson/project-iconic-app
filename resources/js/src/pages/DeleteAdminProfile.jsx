@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AdminDashboardContainer from "../components/AdminDashboardContainer";
 import ReactGA from "react-ga";
 import { useTranslation } from "react-i18next";
-import { deleteAccount } from "../features/auth/authSlice";
+import { deleteAccount, reset } from "../features/auth/authSlice";
 
 const DeleteAdminProfile = () => {
     const { t } = useTranslation(["profile"]);
