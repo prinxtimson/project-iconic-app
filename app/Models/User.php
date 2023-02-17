@@ -32,6 +32,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'email',
         'password',
         'device_token',
+        'password_updated_at'
     ];
 
     //protected $guard_name = 'web';
@@ -53,6 +54,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password_updated_at' => 'datetime'
     ];
 
     public function profile () 

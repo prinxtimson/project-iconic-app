@@ -142,6 +142,7 @@ class AuthController extends Controller
         }
         $user->update([
             'password' => bcrypt($fields['new_password']),
+            'password_updated_at' => Carbon::now()
         ]);
 
         return response([
@@ -176,7 +177,8 @@ class AuthController extends Controller
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) use ($request) {
                 $user->forceFill([
-                    'password' => Hash::make($password)
+                    'password' => Hash::make($password),
+            'password_updated_at' => Carbon::now()
                 ])->setRememberToken(Str::random(60));
     
                 $user->save();

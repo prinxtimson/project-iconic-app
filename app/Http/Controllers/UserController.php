@@ -31,7 +31,6 @@ class UserController extends Controller
         //
         $fields = $request->validate([
             'name' => 'required|string',
-            'username' => 'required||unique:users,username',
             'dob' => 'nullable|date',
             'role' => 'nullable|string',
             'email' => 'required|string|unique:users,email',
@@ -42,15 +41,15 @@ class UserController extends Controller
 
         $user = User::create([
             'name' =>  $fields['name'],
-            'email' => $fields['email'],
-            'username' => strtolower($fields['username']),
+            'email' => trim($fields['email']),
+            'username' => strtolower(str_replace(" ", "", $fields['name'])),
             'avatar' => 'https://www.gravatar.com/avatar/'.$hash,
             'password' => bcrypt($fields['password'])
         ]);
 
         $user->profile()->create([
             'name' => $fields['name'],
-            'dob' => $fields['dob']
+            'dob' => $fields['dob'] ?? ""
         ]);
 
         $user->setting()->create([
