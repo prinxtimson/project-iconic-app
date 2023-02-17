@@ -15,7 +15,7 @@ const AdminHeader = () => {
     const [searchResult, setSearchResult] = useState([]);
 
     const dispatch = useDispatch();
-    const { user, isLoading } = useSelector((state) => state.auth);
+    const { user, isLoading, tfa } = useSelector((state) => state.auth);
 
     useEffect(() => {
         window.addEventListener("resize", updateWidth);
@@ -113,27 +113,29 @@ const AdminHeader = () => {
                 {user ? (
                     <div className="flex-shrink-0 d-flex justify-content-end">
                         <div className="me-2 ">
-                            <div className="input-group">
-                                <input
-                                    className="form-control"
-                                    type="search"
-                                    placeholder="Search"
-                                    aria-label="Search"
-                                    value={searchText}
-                                    onChange={(e) =>
-                                        setSearchText(e.target.value)
-                                    }
-                                />
-                                <button
-                                    className="btn btn-outline-secondary"
-                                    type="submit"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#searchModal"
-                                    onClick={handleSearch}
-                                >
-                                    <i className="bi bi-search"></i>
-                                </button>
-                            </div>
+                            {tfa && (
+                                <div className="input-group">
+                                    <input
+                                        className="form-control"
+                                        type="search"
+                                        placeholder="Search"
+                                        aria-label="Search"
+                                        value={searchText}
+                                        onChange={(e) =>
+                                            setSearchText(e.target.value)
+                                        }
+                                    />
+                                    <button
+                                        className="btn btn-outline-secondary"
+                                        type="submit"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#searchModal"
+                                        onClick={handleSearch}
+                                    >
+                                        <i className="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            )}
                         </div>
                         {/* <div
                             className="me-2 dropdown-center"
