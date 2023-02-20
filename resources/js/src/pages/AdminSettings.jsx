@@ -99,7 +99,7 @@ const AdminSettings = () => {
                             onSubmit={handleOnSubmit}
                             className="form row g-3"
                         >
-                            <div className="form-floating">
+                            {/* <div className="form-floating">
                                 <select
                                     className="form-select"
                                     id="theme"
@@ -116,7 +116,7 @@ const AdminSettings = () => {
                                 <label htmlFor="floatingInput">
                                     Preferred Theme
                                 </label>
-                            </div>
+                            </div> */}
                             <div className="form-floating">
                                 <select
                                     className="form-select"
