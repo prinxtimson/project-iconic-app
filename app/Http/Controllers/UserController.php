@@ -53,8 +53,8 @@ class UserController extends Controller
         ]);
 
         $user->setting()->create([
-            'font' => 'roboto',
-            'theme' => 'dark',
+            'font' => 'Roboto',
+            'theme' => 'light',
             'language' => 'en'
         ]);
 
@@ -99,8 +99,8 @@ class UserController extends Controller
             ]);
 
             $user->setting()->create([
-                'font' => 'roboto',
-                'theme' => 'dark',
+                'font' => 'Roboto',
+                'theme' => 'light',
                 'language' => 'en'
             ]);
 
