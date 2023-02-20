@@ -12,7 +12,6 @@ class TwoFactorAuthController extends Controller
     /**
      * validate sms
      *
-     * @return response()
      */
     public function store(Request $request)
     {
@@ -25,7 +24,7 @@ class TwoFactorAuthController extends Controller
                 ->exists();
         
         if(!$exists){
-            return response('Invalid OTP, please resend', 401);
+            return response(['message' => 'Invalid OTP, please resend'], 401);
         }
   
         $exists = TwoFactor::where('user_id', auth()->user()->id)
@@ -34,17 +33,17 @@ class TwoFactorAuthController extends Controller
                 ->exists();
   
         if ($exists) {
-            $request->session()->put('user_2fa', auth()->user()->id);
             
-            return redirect(RouteServiceProvider::HOME);
+            $request->session()->put('user_2fa', auth()->user()->id);
+
+            return response(['meesage' => 'Successful']);
         }
   
-        return response('OTP timed out, please resend ', 401);
+        return response(['meesage' => 'OTP timed out, please resend '], 401);
     }
     /**
      * resend otp code
      *
-     * @return response()
      */
     public function resend()
     {

@@ -24,29 +24,23 @@ const AdminTwoFactorAuth = () => {
     );
 
     useEffect(() => {
-        if (!isLoading && !user) {
-            navigate("../login");
-        }
-        if (user && !user.email_verified_at) {
-            navigate("/email/verify");
-        }
-    }, [user]);
-
-    useEffect(() => {
         ReactGA.pageview(window.location.pathname);
         document.title = "Two Factor Auth Page";
     }, []);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(reset());
-        }, 3000);
-
         if (isSuccess) {
-            message && toast.success(message);
+            message &&
+                toast.success(message, { onClose: () => dispatch(reset()) });
+            dispatch(getCurrentUser());
+        }
+    }, [isSuccess, message, navigate, dispatch]);
+
+    useEffect(() => {
+        if (user) {
             navigate("/admin/dashboard", { replace: true });
         }
-    }, [isError, isSuccess, message, navigate, dispatch]);
+    }, [user]);
 
     const handleOnChange = (event) => {
         setData({ ...data, [event.target.name]: event.target.value });
@@ -81,10 +75,17 @@ const AdminTwoFactorAuth = () => {
                                 </div>
                                 {isError && (
                                     <div
-                                        className={`alert alert-danger py-2`}
+                                        className={`alert alert-danger alert-dismissible fade show`}
                                         role="alert"
                                     >
                                         {message}
+                                        <button
+                                            type="button"
+                                            className="btn-close"
+                                            data-bs-dismiss="alert"
+                                            aria-label="Close"
+                                            onClick={() => dispatch(reset())}
+                                        ></button>
                                     </div>
                                 )}
                                 <form

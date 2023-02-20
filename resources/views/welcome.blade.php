@@ -20,8 +20,8 @@
         <title>ElintX</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <!-- <link href="https://fonts.bunny.net/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet"> -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet" id='dynamic-font'>
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -34,11 +34,12 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Roboto';
+                background-color: #f4f6fe !important;
             }
         </style>
     </head>
-    <body class="antialiased" dir='ltr'>
+    <body class="antialiased" dir='ltr' id="body">
     <div id="app" class='main flex-grow-1 d-flex min-vh-100'></div>
     <script src="{{asset('js/app.js')}}"></script>
 <!-- Start of ChatBot (www.chatbot.com) code -->

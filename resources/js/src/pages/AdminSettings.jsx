@@ -50,7 +50,11 @@ const AdminSettings = () => {
 
         if (isSuccess) {
             message && toast.success(message);
-            i18next.changeLanguage(data.language);
+            // i18next.changeLanguage(data.language);
+            // const font = document.getElementById("dynamic-font");
+            // font.href = `https://fonts.googleapis.com/css2?family=${data.font} Script:wght@400;600;700&display=swap`;
+            // const element = document.getElementsByTagName("body");
+            // element.style.fontFamily = data.font;
         }
     }, [user, isError, isSuccess, message, dispatch]);
 
@@ -98,6 +102,24 @@ const AdminSettings = () => {
                             <div className="form-floating">
                                 <select
                                     className="form-select"
+                                    id="theme"
+                                    name="theme"
+                                    aria-label="Select theme"
+                                    value={data.theme}
+                                    onChange={handleOnChange}
+                                >
+                                    <option>Select theme</option>
+                                    <option value="light">Light Theme</option>
+                                    <option value="dark">Dark Theme</option>
+                                </select>
+
+                                <label htmlFor="floatingInput">
+                                    Preferred Theme
+                                </label>
+                            </div>
+                            <div className="form-floating">
+                                <select
+                                    className="form-select"
                                     id="language"
                                     name="language"
                                     aria-label="Floating label select example"
@@ -116,7 +138,27 @@ const AdminSettings = () => {
                                     Preferred Language
                                 </label>
                             </div>
+                            <div className="form-floating">
+                                <select
+                                    className="form-select"
+                                    id="font"
+                                    name="font"
+                                    aria-label="select font"
+                                    value={data.font}
+                                    onChange={handleOnChange}
+                                >
+                                    <option>Select preferred font</option>
+                                    {FONTS.map((name) => (
+                                        <option value={name} key={name}>
+                                            {name}
+                                        </option>
+                                    ))}
+                                </select>
 
+                                <label htmlFor="floatingInput">
+                                    Preferred Font
+                                </label>
+                            </div>
                             <div className="d-grid gap-2 col-12 mx-auto">
                                 <button
                                     className={`btn btn-${
@@ -137,3 +179,25 @@ const AdminSettings = () => {
 };
 
 export default AdminSettings;
+
+const FONTS = [
+    "Abel",
+    "Abhaya Libre",
+    "Aclonica",
+    "Acme",
+    "Akaya Kanadaka",
+    "Akshar",
+    "Aladin",
+    "Alata",
+    "Aldrich",
+    "Bad Script",
+    "Baloo 2",
+    "Basic",
+    "Battambang",
+    "Beau Rivage",
+    "Berkshire Swash",
+    "Cambay",
+    "Kaushan Script",
+    "Finger Paint",
+    "Roboto",
+];

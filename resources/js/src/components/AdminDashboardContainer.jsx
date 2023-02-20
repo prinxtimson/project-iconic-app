@@ -70,7 +70,10 @@ const AdminDashboardContainer = ({ children }) => {
     const handleToggle = () => setIsActive(!isActive);
 
     return (
-        <div className="flex-grow-1 d-flex flex-column">
+        <div
+            className="flex-grow-1 d-flex flex-column"
+            style={{ maxHeight: "100%" }}
+        >
             <SearchDialog
                 searchResult={searchResult}
                 handleOnClose={handleOnClose}
@@ -90,13 +93,13 @@ const AdminDashboardContainer = ({ children }) => {
                 )}
             </div>
             <nav
-                className="navbar navbar-light bg-white py-0 "
+                className="navbar navbar-light navbar-expand-lg bg-white py-0"
                 style={{ minHeight: 60 }}
             >
                 <div className="container-fluid px-3">
                     <Link
                         id="brand"
-                        className="navbar-brand mx-auto"
+                        className="navbar-brand "
                         to={user ? "/admin/dashboard" : "/admin"}
                     >
                         <img
@@ -108,173 +111,6 @@ const AdminDashboardContainer = ({ children }) => {
                     </Link>
 
                     <OffcanvasNavbar user={user} />
-                    <div className="flex-grow-1 py-2">
-                        <ul className="navbar-nav d-lg-flex flex-row d-none">
-                            <li className="nav-item mx-2">
-                                <Link
-                                    to="/admin/dashboard"
-                                    className={` nav-link fw-bold ${
-                                        window.location.pathname ===
-                                        "/admin/dashboard"
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                    aria-current="page"
-                                >
-                                    Home
-                                </Link>
-                            </li>
-                            <li className="nav-item mx-2 dropdown">
-                                <a
-                                    className={` nav-link fw-bold dropdown-toggle ${
-                                        window.location.pathname ===
-                                        "/admin/dashboard/analytics"
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                    href="#"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Analytics
-                                </a>
-
-                                <ul className="dropdown-menu">
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/analytics"
-                                            className="dropdown-item"
-                                        >
-                                            Generate Report
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/analytics/export-report"
-                                            className="dropdown-item "
-                                        >
-                                            Export Report
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/analytics/archived-report"
-                                            className="dropdown-item "
-                                        >
-                                            Archived Report
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/analytics/deleted-report"
-                                            className="dropdown-item"
-                                        >
-                                            Deleted Report
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="nav-item dropdown mx-2">
-                                <a
-                                    className={` nav-link fw-bold dropdown-toggle ${
-                                        window.location.pathname ===
-                                        "/admin/dashboard/manage-account"
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                    href="#"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Manage Account
-                                </a>
-
-                                <ul className="dropdown-menu">
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/manage-account"
-                                            className="dropdown-item"
-                                        >
-                                            Profile
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/manage-account/edit-profile"
-                                            className="dropdown-item"
-                                        >
-                                            Review Profile
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/manage-account/change-password"
-                                            className="dropdown-item"
-                                        >
-                                            Change Password
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/manage-account/delete-account"
-                                            className="dropdown-item"
-                                        >
-                                            Delete Admin Account
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="nav-item dropdown mx-2">
-                                <a
-                                    className={`nav-link dropdown-toggle fw-bold ${
-                                        window.location.pathname ===
-                                        "/admin/dashboard/manage-users"
-                                            ? "active"
-                                            : "text"
-                                    }`}
-                                    href="#"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Manage Subscription
-                                </a>
-                                <ul className="dropdown-menu">
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/manage-users/subscription"
-                                            className="dropdown-item"
-                                        >
-                                            Manage Subscription
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard/manage-users"
-                                            className="dropdown-item"
-                                        >
-                                            View Users Activities
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="nav-item mx-2">
-                                <Link
-                                    to="/admin/dashboard/settings"
-                                    className={`nav-link fw-bold ${
-                                        window.location.pathname ===
-                                        "/admin/dashboardsettings"
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                >
-                                    Settings
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
 
                     <div className="flex-shrink-0 d-flex align-items-center">
                         <div className="me-2 dropdown">
@@ -343,18 +179,18 @@ const AdminDashboardContainer = ({ children }) => {
             <div className=" flex-grow-1 d-flex">
                 <main className="flex-grow-1 wrapper d-flex align-items-stretch">
                     <nav
-                        className={`sidebar flex-column flex-shrink-0 px-3 py-2 text-white d-lg-flex d-none bg-white `}
+                        className={`navbar sidebar flex-column flex-shrink-0 px-3 py-2  d-lg-flex d-none bg-white `}
                         style={{ minWidth: 250 }}
                         id="sidebarMenu"
                     >
-                        <ul className="nav nav-pills flex-column mb-auto py-5">
-                            <li className="">
+                        <ul className="navbar-nav nav-pills flex-column py-5 w-100">
+                            <li className="nav-item ">
                                 <Link
                                     to="/admin/dashboard"
-                                    className={` nav-link fw-bold ${
+                                    className={`c-navlink px-3 nav-link fw-bold ${
                                         window.location.pathname ===
                                         "/admin/dashboard"
-                                            ? "active-tab"
+                                            ? "c-active"
                                             : ""
                                     }`}
                                     aria-current="page"
@@ -363,13 +199,15 @@ const AdminDashboardContainer = ({ children }) => {
                                 </Link>
                             </li>
                             <li>
-                                <button
-                                    className={`btn nav-link fw-bold ${
-                                        window.location.pathname ===
-                                        "/admin/dashboard/analytics"
-                                            ? "active-tab"
+                                <a
+                                    className={`c-navlink px-3 nav-link fw-bold ${
+                                        window.location.pathname.match(
+                                            /\/admin\/dashboard\/analytics(\/[a-z]*-?[a-z]*)?/
+                                        )
+                                            ? "c-active"
                                             : ""
                                     }`}
+                                    href="#"
                                     type="button"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#analytics"
@@ -377,13 +215,19 @@ const AdminDashboardContainer = ({ children }) => {
                                     aria-controls="analytics"
                                 >
                                     Analytics
-                                </button>
+                                </a>
                                 <div className="collapse" id="analytics">
-                                    <ul className="nav nav-pills flex-column mb-auto">
+                                    <ul className="navbar-nav nav-pills flex-column ">
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/analytics"
-                                                className="nav-link"
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        /^\/admin\/dashboard\/analytics$/
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Generate Report
                                             </Link>
@@ -391,7 +235,13 @@ const AdminDashboardContainer = ({ children }) => {
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/analytics/export-report"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        "/admin/dashboard/analytics/export-report"
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Export Report
                                             </Link>
@@ -399,7 +249,13 @@ const AdminDashboardContainer = ({ children }) => {
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/analytics/archived-report"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        "/admin/dashboard/analytics/archived-report"
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Archived Report
                                             </Link>
@@ -407,7 +263,13 @@ const AdminDashboardContainer = ({ children }) => {
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/analytics/deleted-report"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        "/admin/dashboard/analytics/deleted-report"
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Deleted Report
                                             </Link>
@@ -417,27 +279,35 @@ const AdminDashboardContainer = ({ children }) => {
                             </li>
 
                             <li>
-                                <button
-                                    className={`btn nav-link fw-bold ${
-                                        window.location.pathname ===
-                                        "/admin/dashboard/manage-account"
-                                            ? "active-tab"
+                                <a
+                                    className={`c-navlink px-3 nav-link fw-bold ${
+                                        window.location.pathname.match(
+                                            /\/admin\/dashboard\/manage-account(\/[a-z]*-?[a-z]*)?/
+                                        )
+                                            ? "c-active"
                                             : ""
                                     }`}
                                     type="button"
+                                    href="#"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#collapseExample"
                                     aria-expanded="false"
                                     aria-controls="collapseExample"
                                 >
                                     Manage Account
-                                </button>
+                                </a>
                                 <div className="collapse" id="collapseExample">
-                                    <ul className="nav nav-pills flex-column mb-auto">
+                                    <ul className="navbar-nav nav-pills flex-column mb-auto">
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/manage-account"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        /^\/admin\/dashboard\/manage-account$/
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Profile
                                             </Link>
@@ -445,7 +315,13 @@ const AdminDashboardContainer = ({ children }) => {
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/manage-account/edit-profile"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        "/admin/dashboard/manage-account/edit-profile"
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Review Profile
                                             </Link>
@@ -453,7 +329,13 @@ const AdminDashboardContainer = ({ children }) => {
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/manage-account/change-password"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        "/admin/dashboard/manage-account/change-password"
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Change Password
                                             </Link>
@@ -461,7 +343,13 @@ const AdminDashboardContainer = ({ children }) => {
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/manage-account/delete-account"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        "/admin/dashboard/manage-account/delete-account"
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Delete Admin Account
                                             </Link>
@@ -470,11 +358,12 @@ const AdminDashboardContainer = ({ children }) => {
                                 </div>
                             </li>
                             <li>
-                                <button
-                                    className={`btn nav-link fw-bold ${
-                                        window.location.pathname ===
-                                        "/admin/dashboard/manage-users"
-                                            ? "active-tab"
+                                <a
+                                    className={`c-navlink px-3 nav-link fw-bold ${
+                                        window.location.pathname.match(
+                                            /\/admin\/dashboard\/manage-users(\/[a-z]*-?[a-z]*)?/
+                                        )
+                                            ? "c-active"
                                             : ""
                                     }`}
                                     type="button"
@@ -484,13 +373,19 @@ const AdminDashboardContainer = ({ children }) => {
                                     aria-controls="manageUsers"
                                 >
                                     Manage Subscription
-                                </button>
+                                </a>
                                 <div className="collapse" id="manageUsers">
-                                    <ul className="nav nav-pills flex-column mb-auto">
+                                    <ul className="navbar-nav nav-pills flex-column mb-auto">
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/manage-users/subscription"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        "/admin/dashboard/manage-users/subscription"
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 Manage Subscription
                                             </Link>
@@ -498,7 +393,13 @@ const AdminDashboardContainer = ({ children }) => {
                                         <li className="ps-3">
                                             <Link
                                                 to="/admin/dashboard/manage-users"
-                                                className="nav-link "
+                                                className={`nav-link fw-bold c-sub-navlink px-3 ${
+                                                    window.location.pathname.match(
+                                                        /^\/admin\/dashboard\/manage-users$/
+                                                    )
+                                                        ? "c-sub-active"
+                                                        : ""
+                                                }`}
                                             >
                                                 View Users Activities
                                             </Link>
@@ -509,10 +410,11 @@ const AdminDashboardContainer = ({ children }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/settings"
-                                    className={`nav-link fw-bold ${
-                                        window.location.pathname ===
-                                        "/admin/dashboardsettings"
-                                            ? "active-tab"
+                                    className={`c-navlink px-3 nav-link fw-bold ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/settings"
+                                        )
+                                            ? "c-active"
                                             : ""
                                     }`}
                                 >
@@ -523,7 +425,9 @@ const AdminDashboardContainer = ({ children }) => {
                     </nav>
 
                     <div className="flex-grow-1 d-flex flex-column">
-                        <div className="flex-grow-1">{children}</div>
+                        <div className="flex-grow-1 h-100 overflow-auto">
+                            {children}
+                        </div>
 
                         <AdminFooter dark={true} />
                     </div>

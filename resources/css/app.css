@@ -99,3 +99,21 @@ abbr[title] {
     background: #6f48eb;
     color: white;
 }
+
+.c-navlink:hover {
+    background-color: darkslateblue;
+    color: #fff;
+}
+
+.c-active {
+    background-color: darkslateblue !important;
+    color: #fff !important;
+}
+
+.c-sub-navlink:hover {
+    color: darkslateblue !important;
+}
+
+.c-sub-active {
+    color: darkslateblue !important;
+}

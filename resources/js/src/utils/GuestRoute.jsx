@@ -5,9 +5,9 @@ const GuestRoute = ({ children }) => {
     const location = useLocation();
     const { user, isLoading } = useSelector((state) => state.auth);
 
-    const redirectPath = location.state?.path || "../two-factor-auth";
+    const redirectPath = "../dashboard";
 
-    if (!isLoading && user) {
+    if (user) {
         return <Navigate to={redirectPath} />;
     }
 

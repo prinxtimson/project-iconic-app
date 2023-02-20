@@ -96,7 +96,13 @@ const App = () => {
                 }
             );
             let language = user?.setting?.language || "en";
+            let defaultFont = user?.setting?.font || "Roboto";
+
             i18next.changeLanguage(language);
+            const font = document.getElementById("dynamic-font");
+            font.href = `https://fonts.googleapis.com/css2?family=${defaultFont}:wght@400;600;700&display=swap`;
+            const element = document.getElementById("body");
+            element.style.fontFamily = defaultFont;
         }
     }, [user]);
 
@@ -213,7 +219,11 @@ const App = () => {
                         />
                         <Route
                             path="two-factor-auth"
-                            element={<AdminTwoFactorAuth />}
+                            element={
+                                <GuestRoute>
+                                    <AdminTwoFactorAuth />
+                                </GuestRoute>
+                            }
                         />
                         <Route path="dashboard">
                             <Route

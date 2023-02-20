@@ -15,6 +15,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use JD\Cloudder\Facades\Cloudder;
 use App\Notifications\AccountDelete;
 use App\Notifications\ProfileUpdated;
+use Exception;
 use Illuminate\Support\Facades\Notification;
 
 class AuthController extends Controller
@@ -28,24 +29,16 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            //$request->session()->regenerate();
-            $token = auth()->user()->createToken('access_token')->plainTextToken;
+            $request->session()->regenerate();
 
-            
-            $user = auth()->user()->load(['roles', 'profile', 'setting']);
+            $user = auth()->user();
             if ($user->email_verified_at){
                 auth()->user()->generate_code();
             }
 
-            auth()->user()->notifications;
-            auth()->user()->unreadNotifications;
-
-            $response = [
-                'token' => $token,
-                'user' => auth()->user()
-            ];
-
-            return $response;
+            return response([
+                'message' => 'Successful'
+            ]);
         }
 
         return response([
@@ -152,17 +145,22 @@ class AuthController extends Controller
 
     public function forgotPass(Request $request)
     {
+        try{
+
         $request->validate(['email' => 'required|email']);
 
         $status = Password::sendResetLink(
             $request->only('email')
         );
-
+            
         if ($status === Password::RESET_LINK_SENT) {
             return response('Password reset link had been sent to your email');
         }
+        return response($status, 400);
+    } catch (Exception $e) {
+        return response($e->getMessage(), 400);
+    }
         
-        return response('An error occur', 400);
     }
 
     public function resetPass(Request $request)
@@ -212,11 +210,11 @@ class AuthController extends Controller
     public function delete()
     {
         $user = auth()->user();
-        $user->delete();
+        $user->forceDelete();
 
-        $admins = User::role('admin')->get();
+        // $admins = User::role('admin')->get();
 
-        Notification::send($admins, new AccountDelete($user));
+        // Notification::send($admins, new AccountDelete($user));
 
         //Mail::to($user)->send(new UserDeactivate($user->profile));
 

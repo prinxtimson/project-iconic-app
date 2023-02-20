@@ -113,7 +113,7 @@ const AdminChangePassword = () => {
                                         type={visible ? "text" : "password"}
                                         className="form-control form-control-lg"
                                         value={new_password}
-                                        placeholder="New password"
+                                        placeholder="New Password"
                                         id="floatingInput"
                                         name="new_password"
                                         onChange={handleOnChange}
@@ -146,7 +146,7 @@ const AdminChangePassword = () => {
                                         }
                                         className="form-control form-control-lg"
                                         value={new_password_confirmation}
-                                        placeholder="Confirm new password"
+                                        placeholder="Confirm New Password"
                                         id="floatingInput"
                                         name="new_password_confirmation"
                                         onChange={handleOnChange}

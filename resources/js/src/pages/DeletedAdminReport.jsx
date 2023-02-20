@@ -135,6 +135,7 @@ const DeletedAdminReport = () => {
                                                                     }
                                                                 >
                                                                     Delete
+                                                                    Permanently
                                                                 </button>
                                                             </li>
                                                         </ul>

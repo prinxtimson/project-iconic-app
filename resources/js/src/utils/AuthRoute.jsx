@@ -6,24 +6,15 @@ import { getCurrentUser } from "../features/auth/authSlice";
 const AuthRoute = ({ children }) => {
     const location = useLocation();
     const dispatch = useDispatch();
-    const { user, tfa, isLoading } = useSelector((state) => state.auth);
+    const { user, tfa } = useSelector((state) => state.auth);
 
-    if (!isLoading && !user) {
+    if (!user) {
         return (
             <Navigate to="/admin/login" state={{ path: location.pathname }} />
         );
     }
 
-    if (!isLoading && user && !tfa) {
-        return (
-            <Navigate
-                to="../two-factor-auth"
-                state={{ path: location.pathname }}
-            />
-        );
-    }
-
-    if (!isLoading && user && !user.email_verified_at) {
+    if (user && !user.email_verified_at) {
         return (
             <Navigate to="/email/verify" state={{ path: location.pathname }} />
         );

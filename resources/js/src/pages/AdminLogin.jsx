@@ -33,16 +33,9 @@ const AdminLogin = () => {
     }, []);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(reset());
-        }, 3000);
-
         if (isSuccess) {
-            if (user && user.email_verified_at) {
-                navigate("/admin/two-factor-auth", { replace: true });
-            } else {
-                navigate("/email/verify", { replace: true });
-            }
+            dispatch(reset());
+            navigate("/admin/two-factor-auth");
         }
     }, [user, isError, isSuccess, message, navigate, dispatch]);
 
@@ -79,10 +72,17 @@ const AdminLogin = () => {
                                 </p>
                                 {isError && (
                                     <div
-                                        className="alert alert-danger py-2"
+                                        className={`alert alert-danger alert-dismissible fade show`}
                                         role="alert"
                                     >
                                         {message}
+                                        <button
+                                            type="button"
+                                            className="btn-close"
+                                            data-bs-dismiss="alert"
+                                            aria-label="Close"
+                                            onClick={() => dispatch(reset())}
+                                        ></button>
                                     </div>
                                 )}
                                 <form

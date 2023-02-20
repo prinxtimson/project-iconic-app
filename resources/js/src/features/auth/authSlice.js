@@ -28,8 +28,8 @@ export const register = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -46,8 +46,8 @@ export const registerAdmin = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -83,8 +83,8 @@ export const updateUser = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -101,8 +101,8 @@ export const forgotPass = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -121,8 +121,8 @@ export const resetPass = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -145,8 +145,8 @@ export const changePass = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -163,8 +163,9 @@ export const verifyCode = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data.message ||
+                err.response.data;
+            //err.toString();
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -181,8 +182,8 @@ export const updateSetting = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             if (err.response.status === 401 || err.response.status === 403) {
                 localStorage.removeItem("elintx-user");
@@ -206,8 +207,8 @@ export const resendCode = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -249,8 +250,8 @@ export const markNotification = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -273,8 +274,8 @@ export const deleteAccount = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -297,8 +298,8 @@ export const deleteUser = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -321,8 +322,8 @@ export const deactivateUser = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -345,8 +346,8 @@ export const activateUser = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -369,8 +370,8 @@ export const resendVerification = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.message ||
-                err.toString();
+                err.response.data ||
+                err.response.data.message;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -514,7 +515,7 @@ export const authSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.tfa = true;
-                state.message = "Successful";
+                state.message = action.payload.message;
             })
             .addCase(verifyCode.rejected, (state, action) => {
                 state.isLoading = false;
@@ -527,7 +528,7 @@ export const authSlice = createSlice({
             .addCase(resendCode.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.message = "New OTP code had been sent to your email";
+                state.message = "New OTP code has been sent to your email";
             })
             .addCase(resendCode.rejected, (state, action) => {
                 state.isLoading = false;
@@ -548,8 +549,7 @@ export const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.user = action.payload.user;
-                state.token = action.payload.token;
+                state.message = action.payload.message;
             })
             .addCase(login.rejected, (state, action) => {
                 state.isLoading = false;

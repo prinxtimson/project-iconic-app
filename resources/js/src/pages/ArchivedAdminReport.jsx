@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import AdminDashboardContainer from "../components/AdminDashboardContainer";
 import {
-    deleteReport,
     getReports,
     reset,
     restoredReport,
+    trashedReport,
 } from "../features/report/reportSlice";
 import Moment from "react-moment";
 
@@ -130,13 +130,13 @@ const ArchivedAdminReport = () => {
                                                                     className="dropdown-item"
                                                                     onClick={() =>
                                                                         dispatch(
-                                                                            deleteReport(
+                                                                            trashedReport(
                                                                                 report.id
                                                                             )
                                                                         )
                                                                     }
                                                                 >
-                                                                    Delete
+                                                                    Trash
                                                                 </button>
                                                             </li>
                                                         </ul>

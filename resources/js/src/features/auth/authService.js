@@ -27,21 +27,12 @@ const getCurrentUser = async () => {
 const logout = async () => {
     await axios.post("/logout");
     localStorage.removeItem("elintx-user");
-    localStorage.removeItem("elintx-access-token");
     localStorage.removeItem("elintx-2fa");
 };
 
 const login = async (userData) => {
     await axios.get(`/sanctum/csrf-cookie`);
     const res = await axios.post(`${API_URL}/login`, userData);
-
-    if (res.data) {
-        localStorage.setItem("elintx-user", JSON.stringify(res.data.user));
-        localStorage.setItem(
-            "elintx-access-token",
-            JSON.stringify(res.data.token)
-        );
-    }
 
     return res.data;
 };

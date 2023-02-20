@@ -29,7 +29,7 @@ const OffcanvasNavbar = ({ user }) => {
                 ></button>
             </div>
             <div className="offcanvas-body">
-                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <ul className="navbar-nav flex-grow-1 pe-3">
                     <li className="nav-item">
                         <Link
                             to="/admin/dashboard"
@@ -46,8 +46,9 @@ const OffcanvasNavbar = ({ user }) => {
                     <li className="nav-item dropdown">
                         <a
                             className={` nav-link fw-bold dropdown-toggle ${
-                                window.location.pathname ===
-                                "/admin/dashboard/analytics"
+                                window.location.pathname.match(
+                                    /\/admin\/dashboard\/analytics(\/[a-z]*-?[a-z]*)?/
+                                )
                                     ? "active"
                                     : ""
                             }`}
@@ -63,7 +64,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/analytics"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            /^\/admin\/dashboard\/analytics$/
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Generate Report
                                 </Link>
@@ -71,7 +78,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/analytics/export-report"
-                                    className="dropdown-item "
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/analytics/export-report"
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Export Report
                                 </Link>
@@ -79,7 +92,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/analytics/archived-report"
-                                    className="dropdown-item "
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/analytics/archived-report"
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Archived Report
                                 </Link>
@@ -87,7 +106,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/analytics/deleted-report"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/analytics/deleted-report"
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Deleted Report
                                 </Link>
@@ -97,8 +122,9 @@ const OffcanvasNavbar = ({ user }) => {
                     <li className="nav-item dropdown">
                         <a
                             className={` nav-link fw-bold dropdown-toggle ${
-                                window.location.pathname ===
-                                "/admin/dashboard/manage-account"
+                                window.location.pathname.match(
+                                    /\/admin\/dashboard\/manage-account(\/[a-z]*-?[a-z]*)?/
+                                )
                                     ? "active"
                                     : ""
                             }`}
@@ -114,7 +140,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/manage-account"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            /^\/admin\/dashboard\/manage-account$/
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Profile
                                 </Link>
@@ -122,7 +154,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/manage-account/edit-profile"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/manage-account/edit-profile"
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Review Profile
                                 </Link>
@@ -130,7 +168,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/manage-account/change-password"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/manage-account/change-password"
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Change Password
                                 </Link>
@@ -138,7 +182,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/manage-account/delete-account"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/manage-account/delete-account"
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Delete Admin Account
                                 </Link>
@@ -148,8 +198,9 @@ const OffcanvasNavbar = ({ user }) => {
                     <li className="nav-item dropdown">
                         <a
                             className={`nav-link dropdown-toggle fw-bold ${
-                                window.location.pathname ===
-                                "/admin/dashboard/manage-users"
+                                window.location.pathname.match(
+                                    /\/admin\/dashboard\/manage-users(\/[a-z]*-?[a-z]*)?/
+                                )
                                     ? "active"
                                     : "text"
                             }`}
@@ -164,7 +215,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/manage-users/subscription"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            "/admin/dashboard/manage-users/subscription"
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     Manage Subscription
                                 </Link>
@@ -172,7 +229,13 @@ const OffcanvasNavbar = ({ user }) => {
                             <li>
                                 <Link
                                     to="/admin/dashboard/manage-users"
-                                    className="dropdown-item"
+                                    className={`dropdown-item ${
+                                        window.location.pathname.match(
+                                            /^\/admin\/dashboard\/manage-users$/
+                                        )
+                                            ? "active"
+                                            : ""
+                                    }`}
                                 >
                                     View Users Activities
                                 </Link>
@@ -183,8 +246,9 @@ const OffcanvasNavbar = ({ user }) => {
                         <Link
                             to="/admin/dashboard/settings"
                             className={`nav-link fw-bold ${
-                                window.location.pathname ===
-                                "/admin/dashboardsettings"
+                                window.location.pathname.match(
+                                    "/admin/dashboard/settings"
+                                )
                                     ? "active"
                                     : ""
                             }`}

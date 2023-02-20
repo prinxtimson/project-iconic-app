@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')
                 ->constrained()->onDelete('cascade');
-            $table->string('theme')->default('dark');
+            $table->string('theme')->default('light');
             $table->string('language')->default('en');
-            $table->string('font')->default('roboto');
+            $table->string('font')->default('Roboto');
             $table->timestamps();
         });
     }
