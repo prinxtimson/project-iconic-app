@@ -77,7 +77,6 @@ export const updateUser = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&
@@ -139,7 +138,6 @@ export const changePass = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&
@@ -189,7 +187,6 @@ export const updateSetting = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
 
             return thunkAPI.rejectWithValue(msg);
@@ -199,7 +196,7 @@ export const updateSetting = createAsyncThunk(
 
 export const resendCode = createAsyncThunk(
     "auth/resend-code",
-    async (thunkAPI) => {
+    async (args, thunkAPI) => {
         try {
             return await authService.resendCode();
         } catch (err) {
@@ -215,27 +212,32 @@ export const resendCode = createAsyncThunk(
     }
 );
 
-export const getCurrentUser = createAsyncThunk("auth/me", async (thunkAPI) => {
-    try {
-        return await authService.getCurrentUser();
-    } catch (err) {
-        if (err.response.status === 401 || err.response.status === 403) {
-            localStorage.removeItem("elintx-user");
-            localStorage.removeItem("elintx-access-token");
-            localStorage.removeItem("elintx-2fa");
-            thunkAPI.dispatch(clearUser());
-        }
-        const msg =
-            (err.response && err.response.data && err.response.data.message) ||
-            err.message;
+export const getCurrentUser = createAsyncThunk(
+    "auth/me",
+    async (args, thunkAPI) => {
+        try {
+            return await authService.getCurrentUser();
+        } catch (err) {
+            if (err.response.status === 401 || err.response.status === 403) {
+                localStorage.removeItem("elintx-user");
+                localStorage.removeItem("elintx-access-token");
+                localStorage.removeItem("elintx-2fa");
+            }
+            const msg =
+                (err.response &&
+                    err.response.data &&
+                    err.response.data.message) ||
+                err.message ||
+                err.toString();
 
-        return thunkAPI.rejectWithValue(msg);
+            return thunkAPI.rejectWithValue(msg);
+        }
     }
-});
+);
 
 export const markNotification = createAsyncThunk(
     "auth/mark-notification",
-    async (thunkAPI) => {
+    async (args, thunkAPI) => {
         try {
             return await authService.markNotification();
         } catch (err) {
@@ -243,7 +245,6 @@ export const markNotification = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&
@@ -259,7 +260,7 @@ export const markNotification = createAsyncThunk(
 
 export const deleteAccount = createAsyncThunk(
     "auth/delete-account",
-    async (thunkAPI) => {
+    async (args, thunkAPI) => {
         try {
             return await authService.deleteAccount();
         } catch (err) {
@@ -267,7 +268,6 @@ export const deleteAccount = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&
@@ -291,7 +291,6 @@ export const deleteUser = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&
@@ -315,7 +314,6 @@ export const deactivateUser = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&
@@ -339,7 +337,6 @@ export const activateUser = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&
@@ -355,7 +352,7 @@ export const activateUser = createAsyncThunk(
 
 export const resendVerification = createAsyncThunk(
     "auth/resend-verification",
-    async (thunkAPI) => {
+    async (args, thunkAPI) => {
         try {
             return await authService.resendVerification();
         } catch (err) {
@@ -363,7 +360,6 @@ export const resendVerification = createAsyncThunk(
                 localStorage.removeItem("elintx-user");
                 localStorage.removeItem("elintx-access-token");
                 localStorage.removeItem("elintx-2fa");
-                thunkAPI.dispatch(clearUser());
             }
             const msg =
                 (err.response &&

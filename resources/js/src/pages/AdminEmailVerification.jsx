@@ -15,18 +15,16 @@ const AdminEmailVerification = () => {
 
     useEffect(() => {
         dispatch(reset());
-        setTimeout(() => {
-            dispatch(reset());
-        }, 3000);
-        if (isSuccess) {
-            message && toast.success(message);
-        }
-    }, [isError, isSuccess, message, dispatch]);
-
-    useEffect(() => {
         ReactGA.pageview(window.location.pathname);
         document.title = "Email Verification Page";
     }, []);
+
+    useEffect(() => {
+        if (isSuccess) {
+            message &&
+                toast.success(message, { onClose: () => dispatch(reset()) });
+        }
+    }, [isError, isSuccess, message, dispatch]);
 
     return (
         <AdminContainer>

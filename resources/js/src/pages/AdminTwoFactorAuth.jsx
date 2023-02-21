@@ -24,6 +24,7 @@ const AdminTwoFactorAuth = () => {
     );
 
     useEffect(() => {
+        dispatch(reset());
         ReactGA.pageview(window.location.pathname);
         document.title = "Two Factor Auth Page";
     }, []);
@@ -32,7 +33,7 @@ const AdminTwoFactorAuth = () => {
         if (isSuccess) {
             message &&
                 toast.success(message, { onClose: () => dispatch(reset()) });
-            dispatch(reset());
+            //dispatch(reset());
             dispatch(getCurrentUser());
         }
     }, [isSuccess, message, navigate, dispatch]);
@@ -41,8 +42,7 @@ const AdminTwoFactorAuth = () => {
         if (user) {
             navigate("/admin/dashboard", { replace: true });
         }
-        console.log(message);
-        if (message === "Your email address is not verified.") {
+        if (message == "Your email address is not verified.") {
             navigate("/email/verify");
         }
     }, [user, isError, isSuccess, message]);
