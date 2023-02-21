@@ -52,7 +52,7 @@ const DeletedAdminReport = () => {
             <div className="container-fluid p-4">
                 <div className="row align-items-center">
                     <div className="col">
-                        <h1 className=" text-primary text-center my-4">
+                        <h1 className=" text-primary fw-bold my-4">
                             Deleted Report
                         </h1>
                         {isError && (

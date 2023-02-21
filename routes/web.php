@@ -29,16 +29,24 @@ Route::middleware(['auth:sanctum', 'n2fa'])->get('/two-factor-auth', function ()
 })->name('2fa.index');
 Route::middleware(['auth:sanctum', 'n2fa'])->get('admin/two-factor-auth', function () {
     return view('welcome');
-})->name('2fa.index');
+})->name('admin.2fa.index');
 
 Route::get('/email/verify', function () {
     return view('welcome');
 })->middleware('auth:sanctum')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return to_route('admin.login');
+    if ($request->user()) {
+        $request->fulfill();
+        $roles = auth()->user()->roles;
+        if($roles[0]->name == 'admin'){
+            return redirect('admin/login');
+        }else {
+            return redirect('login');
+        }
+    }
+    return response(['message' => "Unauthorized"], 400);
+    
 })->middleware(['auth:sanctum', 'signed'])->name('verification.verify');
 
 Route::get('/', function () {
@@ -125,7 +133,7 @@ Route::middleware(['auth:sanctum', '2fa', 'verified'])->group(function () {
         Route::group(['prefix' => 'dashboard'], function () {
             Route::get("", function () {
                 return view('welcome');
-            });
+            })->name('admin.dashboard');
             Route::get("settings", function () {
                 return view('welcome');
             });

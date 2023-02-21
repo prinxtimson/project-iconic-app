@@ -117,3 +117,14 @@ abbr[title] {
 .c-sub-active {
     color: darkslateblue !important;
 }
+
+.c-btn:hover {
+    background-color: #fff;
+    color: darkslateblue;
+    border-color: darkslateblue;
+}
+
+.c-btn {
+    background-color: darkslateblue;
+    color: #fff;
+}

@@ -24,6 +24,7 @@ const DurationChart = ({ duration }) => {
                     tooltext: `${moment(item[0]).format("LL")}{br}{br} ${t(
                         "duration_chat.title"
                     )}: ${d.minutes()}m ${d.seconds()}s`,
+                    color: "#FFE15D",
                 });
             });
 

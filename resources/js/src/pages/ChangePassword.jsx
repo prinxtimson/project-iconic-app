@@ -60,7 +60,7 @@ const ChangePassword = () => {
                     style={{ maxWidth: "440px" }}
                 >
                     <div className="card-body">
-                        <h1 className="card-title text-primary text-center mb-4">
+                        <h1 className="card-title fw-bold text-center mb-4">
                             {t("title")}
                         </h1>
                         {isError && (

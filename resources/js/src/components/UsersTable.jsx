@@ -98,7 +98,7 @@ const UsersTable = () => {
     return (
         <div className="container">
             <div className="my-5">
-                <h1 className="card-title text-primary text-center">
+                <h1 className="card-title fw-bold text-center">
                     View User Activities
                 </h1>
             </div>

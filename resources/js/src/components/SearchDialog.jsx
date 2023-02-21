@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const SearchDialog = ({ searchResult, handleOnClose }) => {
@@ -29,29 +29,98 @@ const SearchDialog = ({ searchResult, handleOnClose }) => {
                     </div>
                     <div className="modal-body">
                         <ul className="">
-                            {searchResult.length === 0 ? (
-                                <li>
-                                    <p className="px-3">
-                                        No search result found
-                                    </p>
-                                </li>
-                            ) : (
-                                searchResult.map((result, index) => (
-                                    <li key={index} className="">
-                                        <h3>Page</h3>
-                                        <div className="">
-                                            <Link
-                                                to={result.link}
-                                                onClick={() =>
-                                                    closeBtnRef.current.click()
-                                                }
-                                            >
-                                                <h4>{result.name}</h4>
-                                            </Link>
-                                            <p>{result.content}</p>
-                                        </div>
+                            {searchResult.pages?.length === 0 &&
+                                searchResult.users?.length === 0 &&
+                                searchResult.reports?.length === 0 && (
+                                    <li>
+                                        <p className="px-3">
+                                            No search result found
+                                        </p>
                                     </li>
-                                ))
+                                )}
+                            {searchResult.users?.length > 0 && (
+                                <li>
+                                    <div className="py-2 border-bottom">
+                                        <h3>Users</h3>
+                                    </div>
+                                    <ul>
+                                        {searchResult.users?.map(
+                                            (result, index) => (
+                                                <li key={index} className="">
+                                                    <div className="">
+                                                        <Link
+                                                            to={`#`}
+                                                            onClick={() =>
+                                                                closeBtnRef.current.click()
+                                                            }
+                                                        >
+                                                            <h4>
+                                                                {result.name}
+                                                            </h4>
+                                                        </Link>
+                                                        <p>{result.email}</p>
+                                                    </div>
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </li>
+                            )}
+
+                            {searchResult.reports?.length > 0 && (
+                                <li>
+                                    <div className="py-2 border-bottom">
+                                        <h3>Reports</h3>
+                                    </div>
+                                    <ul>
+                                        {searchResult.reports?.map(
+                                            (result, index) => (
+                                                <li key={index} className="">
+                                                    <div className="">
+                                                        <Link
+                                                            to={`#`}
+                                                            onClick={() =>
+                                                                closeBtnRef.current.click()
+                                                            }
+                                                        >
+                                                            <h4>
+                                                                {result.name}
+                                                            </h4>
+                                                        </Link>
+                                                    </div>
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </li>
+                            )}
+                            {searchResult.pages?.length > 0 && (
+                                <li>
+                                    <div className="py-2 border-bottom">
+                                        <h3>Page</h3>
+                                    </div>
+                                    <ul>
+                                        {searchResult.pages?.map(
+                                            (result, index) => (
+                                                <li key={index} className="">
+                                                    <div className="">
+                                                        <Link
+                                                            to={result.link}
+                                                            onClick={() =>
+                                                                closeBtnRef.current.click()
+                                                            }
+                                                        >
+                                                            <h4>
+                                                                {result.name}
+                                                            </h4>
+                                                        </Link>
+                                                        <p>{result.content}</p>
+                                                    </div>
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </li>
                             )}
                         </ul>
                     </div>

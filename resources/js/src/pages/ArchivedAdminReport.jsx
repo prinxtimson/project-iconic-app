@@ -54,7 +54,7 @@ const ArchivedAdminReport = () => {
             <div className="container-fluid p-4">
                 <div className="row align-items-center">
                     <div className="col">
-                        <h1 className=" text-primary text-center mb-5">
+                        <h1 className=" text-center fw-bold mb-5">
                             Archive Report
                         </h1>
                         {isError && (

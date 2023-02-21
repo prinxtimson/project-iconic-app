@@ -15,7 +15,11 @@ const AdminDashboardContainer = ({ children }) => {
     const dropBtnRef = useRef(null);
     const dropBellRef = useRef(null);
     const [searchText, setSearchText] = useState("");
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState({
+        pages: [],
+        users: [],
+        reports: [],
+    });
     const [isActive, setIsActive] = useState(false);
 
     const dispatch = useDispatch();
@@ -51,7 +55,7 @@ const AdminDashboardContainer = ({ children }) => {
             );
     }, []);
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if (searchText) {
             let _filteredSearch = searchData.filter(
                 (data) =>
@@ -61,11 +65,22 @@ const AdminDashboardContainer = ({ children }) => {
                     data.name.toLowerCase().includes(searchText.toLowerCase())
             );
 
-            setSearchResult(_filteredSearch);
+            let res = await axios.get(`/api/users/search?search=${searchText}`);
+            let users = res.data || [];
+            res = await axios.get(`/api/report/search?search=${searchText}`);
+            let reports = res.data || [];
+
+            setSearchResult({
+                ...searchResult,
+                pages: _filteredSearch,
+                users,
+                reports,
+            });
         }
     };
 
-    const handleOnClose = () => setSearchResult([]);
+    const handleOnClose = () =>
+        setSearchResult({ pages: [], users: [], reports: [] });
 
     const handleToggle = () => setIsActive(!isActive);
 
@@ -156,7 +171,7 @@ const AdminDashboardContainer = ({ children }) => {
                                 height="32"
                             />
                             <a
-                                className="btn nav-link text-dark fw-bold mx-4"
+                                className="btn nav-link text-danger fw-bold mx-4"
                                 href="#"
                                 type="button"
                                 onClick={() => dispatch(logout())}
@@ -425,7 +440,10 @@ const AdminDashboardContainer = ({ children }) => {
                     </nav>
 
                     <div className="flex-grow-1 d-flex flex-column">
-                        <div className="flex-grow-1 h-100 overflow-auto">
+                        <div
+                            className="flex-grow-1 overflow-auto"
+                            style={{ maxHeight: "80vh" }}
+                        >
                             {children}
                         </div>
 

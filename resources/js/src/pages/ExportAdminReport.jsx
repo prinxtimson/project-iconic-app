@@ -77,7 +77,7 @@ const ExportAdminReport = () => {
                             style={{ maxWidth: "540px" }}
                         >
                             <div className="card-body">
-                                <h1 className="card-title text-primary text-center">
+                                <h1 className="card-title fw-bold text-center">
                                     Export Report
                                 </h1>
                                 {isError && (
@@ -168,7 +168,7 @@ const ExportAdminReport = () => {
                                     </div>
                                     <div className="d-grid gap-2 col-12 mx-auto">
                                         <button
-                                            className="btn btn-primary"
+                                            className="btn c-btn"
                                             type="submit"
                                             disabled={isLoading}
                                         >

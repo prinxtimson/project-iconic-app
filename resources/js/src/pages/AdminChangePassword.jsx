@@ -56,7 +56,7 @@ const AdminChangePassword = () => {
         <AdminDashboardContainer>
             <div className="container">
                 <div className="">
-                    <h1 className="card-title text-primary text-center my-4">
+                    <h1 className="card-title fw-bold text-center my-4">
                         {t("title")}
                     </h1>
                 </div>
@@ -175,9 +175,9 @@ const AdminChangePassword = () => {
 
                             <div className="d-grid gap-2 col-12 mx-auto">
                                 <button
-                                    className={`btn btn-${
-                                        isLoading ? "secondary" : "primary"
-                                    } btn-lg text-white`}
+                                    className={`btn c-btn ${
+                                        isLoading ? "btn-secondary" : ""
+                                    } btn-lg`}
                                     type="submit"
                                     disabled={isLoading}
                                 >

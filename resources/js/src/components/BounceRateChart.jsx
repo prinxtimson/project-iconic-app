@@ -24,6 +24,7 @@ const BounceRateChart = ({ bounce }) => {
                     tooltext: `${moment(item[0]).format("LL")}{br}{br} ${t(
                         "bounce_rate_chat.title"
                     )}: ${rate}%`,
+                    color: "#3330E4",
                 });
             });
 

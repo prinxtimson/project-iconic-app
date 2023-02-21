@@ -25,6 +25,7 @@ const UserTypeChart = ({ visit, period }) => {
                     data.unshift({
                         label: moment(d.toISOString()).format("ll"),
                         value: 0,
+                        color: "#FC7300",
                     });
                 }
             }
@@ -32,6 +33,7 @@ const UserTypeChart = ({ visit, period }) => {
                 data.push({
                     label: moment(item.date).format("ll"),
                     value: item.visitors,
+                    color: "#38E54D",
                 });
             });
 

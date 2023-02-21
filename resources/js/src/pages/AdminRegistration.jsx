@@ -33,15 +33,13 @@ const AdminRegistration = () => {
     }, []);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(reset());
-        }, 3000);
-
         if (isSuccess) {
-            message && toast.success(message);
+            message &&
+                toast.success(message, { onClose: () => dispatch(reset()) });
+            dispatch(reset());
             navigate("/email/verify");
         }
-    }, [user, isError, isSuccess, message, dispatch]);
+    }, [isSuccess, message, dispatch]);
 
     const { name, username, email, dob, password, password_confirmation } =
         formData;
@@ -73,10 +71,17 @@ const AdminRegistration = () => {
                                 </p>
                                 {isError && (
                                     <div
-                                        className={`alert alert-danger py-2`}
+                                        className={`alert alert-danger alert-dismissible fade show`}
                                         role="alert"
                                     >
                                         {message}
+                                        <button
+                                            type="button"
+                                            className="btn-close"
+                                            data-bs-dismiss="alert"
+                                            aria-label="Close"
+                                            onClick={() => dispatch(reset())}
+                                        ></button>
                                     </div>
                                 )}
                                 <form
@@ -223,11 +228,9 @@ const AdminRegistration = () => {
                                     </div>
                                     <div className="d-grid gap-2 col-12 mx-auto">
                                         <button
-                                            className={`btn btn-${
-                                                isLoading
-                                                    ? "secondary"
-                                                    : "primary"
-                                            } btn-lg text-white`}
+                                            className={`btn c-btn ${
+                                                isLoading ? "btn-secondary" : ""
+                                            } btn-lg`}
                                             type="submit"
                                             disabled={isLoading}
                                         >

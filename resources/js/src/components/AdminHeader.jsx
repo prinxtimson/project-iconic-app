@@ -6,13 +6,18 @@ import { useTranslation } from "react-i18next";
 import searchData from "../utils/searchData";
 import SearchDialog from "./SearchDialog";
 import Moment from "react-moment";
+import axios from "axios";
 
 const AdminHeader = () => {
     const { t } = useTranslation(["dashboard"]);
     const dropBellRef = useRef(null);
     const [searchText, setSearchText] = useState("");
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState({
+        pages: [],
+        users: [],
+        reports: [],
+    });
 
     const dispatch = useDispatch();
     const { user, isLoading, tfa } = useSelector((state) => state.auth);
@@ -38,7 +43,7 @@ const AdminHeader = () => {
             );
     }, []);
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if (searchText) {
             let _filteredSearch = searchData.filter(
                 (data) =>
@@ -47,12 +52,17 @@ const AdminHeader = () => {
                         .includes(searchText.toLowerCase()) ||
                     data.name.toLowerCase().includes(searchText.toLowerCase())
             );
+            let res = await axios.get(`/api/users/search?search=${searchText}`);
+            let users = res.data || [];
+            res = await axios.get(`/api/report/search?search=${searchText}`);
+            let reports = res.data || [];
 
-            setSearchResult(_filteredSearch);
+            setSearchResult({ pages: _filteredSearch, users, reports });
         }
     };
 
-    const handleOnClose = () => setSearchResult([]);
+    const handleOnClose = () =>
+        setSearchResult({ pages: [], users: [], reports: [] });
 
     const updateWidth = () => {
         setScreenWidth(window.innerWidth);

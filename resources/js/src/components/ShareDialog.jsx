@@ -90,7 +90,7 @@ const ShareDialog = ({ report }) => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="btn btn-primary btn-lg"
+                                    className="btn c-btn btn-lg"
                                     disabled={loading}
                                 >
                                     Share

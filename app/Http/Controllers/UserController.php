@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //
-
+    
     public function index(){
         $users = User::withTrashed()->with('roles')->get();
         return $users;
@@ -30,7 +29,7 @@ class UserController extends Controller
     {
         //
         $fields = $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|min:3',
             'dob' => 'nullable|date',
             'role' => 'nullable|string',
             'email' => 'required|string|unique:users,email',
@@ -64,6 +63,10 @@ class UserController extends Controller
             $user->assignRole('user');
         }
 
+        Auth::login($user);
+            
+        event(new Registered($user));
+
         $response = [
             'message' => 'Registration successful'
         ];
@@ -75,7 +78,7 @@ class UserController extends Controller
     {
         try {
             $fields = $request->validate([
-                'name' => 'required|string',
+                'name' => 'required|string|min:3',
                 'username' => 'required|string|unique:users,username',
                 'dob' => 'nullable|date',
                 'role' => 'nullable|string',
@@ -110,6 +113,8 @@ class UserController extends Controller
                 $user->assignRole('user');
             }
 
+            Auth::login($user);
+
             event(new Registered($user));
 
             $response = [
@@ -121,6 +126,13 @@ class UserController extends Controller
         } catch (Exception $e){
                 return response(['message' => $e->getMessage()], 400);
         }
+    }
+
+    public function search(Request $request)
+    {
+        $users = User::where('name','LIKE','%'.$request->search."%")->orWhere('email','LIKE','%'.$request->search."%")->orWhere('username','LIKE','%'.$request->search."%")->get();
+
+        return $users;
     }
 
     public function disable($id)

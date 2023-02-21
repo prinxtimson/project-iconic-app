@@ -63,7 +63,7 @@ const AdminLogin = () => {
                             style={{ maxWidth: "540px" }}
                         >
                             <div className="card-body">
-                                <h1 className="card-title text-primary text-center">
+                                <h1 className="card-title fw-bold text-center">
                                     Account Login
                                 </h1>
                                 <p className="lead text-center">
@@ -170,11 +170,9 @@ const AdminLogin = () => {
                                     </div>
                                     <div className="d-grid gap-2 col-12 mx-auto">
                                         <button
-                                            className={`btn btn-${
-                                                isLoading
-                                                    ? "secondary"
-                                                    : "primary"
-                                            } btn-lg text-white`}
+                                            className={`btn c-btn ${
+                                                isLoading ? "btn-secondary" : ""
+                                            } btn-lg`}
                                             type="submit"
                                             disabled={isLoading}
                                         >

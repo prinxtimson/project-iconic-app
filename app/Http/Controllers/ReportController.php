@@ -159,6 +159,13 @@ class ReportController extends Controller
         //
     }
 
+    public function search(Request $request)
+    {
+        $reports = Report::where('name','LIKE','%'.$request->search."%")->get();
+
+        return $reports;
+    }
+
     public function archived($id)
     {
         //

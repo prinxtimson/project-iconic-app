@@ -12,7 +12,11 @@ const MainHeader = () => {
     const dropBellRef = useRef(null);
     const [searchText, setSearchText] = useState("");
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState({
+        pages: [],
+        users: [],
+        reports: [],
+    });
 
     const dispatch = useDispatch();
     const { user, isLoading } = useSelector((state) => state.auth);
@@ -38,7 +42,7 @@ const MainHeader = () => {
             );
     }, []);
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if (searchText) {
             let _filteredSearch = searchData.filter(
                 (data) =>
@@ -48,11 +52,21 @@ const MainHeader = () => {
                     data.name.toLowerCase().includes(searchText.toLowerCase())
             );
 
-            setSearchResult(_filteredSearch);
+            let res = await axios.get(`/api/users/search?search=${searchText}`);
+            let users = res.data || [];
+            res = await axios.get(`/api/report/search?search=${searchText}`);
+            let reports = res.data || [];
+
+            setSearchResult({ pages: _filteredSearch, users, reports });
         }
     };
 
-    const handleOnClose = () => setSearchResult([]);
+    const handleOnClose = () =>
+        setSearchResult({
+            pages: [],
+            users: [],
+            reports: [],
+        });
 
     const updateWidth = () => {
         setScreenWidth(window.innerWidth);

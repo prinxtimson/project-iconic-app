@@ -19,6 +19,7 @@ const PageVisitedChart = ({ page }) => {
                 data.push({
                     label: item.url,
                     value: item.pageViews,
+                    color: "#00FFF0",
                 });
             });
 

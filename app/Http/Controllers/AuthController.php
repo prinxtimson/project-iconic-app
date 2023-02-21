@@ -30,11 +30,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            $user = auth()->user();
-            if ($user->email_verified_at){
-                auth()->user()->generate_code();
-            }
+            
+            auth()->user()->generate_code();
 
             return response([
                 'message' => 'Successful'

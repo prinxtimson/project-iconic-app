@@ -28,7 +28,7 @@ class SettingController extends Controller
 
         return response([
             'user' => auth()->user(),
-            'message' => 'Settings had save'
+            'message' => 'Settings saved'
         ]);
     }
 }

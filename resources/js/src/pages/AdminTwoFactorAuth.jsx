@@ -32,6 +32,7 @@ const AdminTwoFactorAuth = () => {
         if (isSuccess) {
             message &&
                 toast.success(message, { onClose: () => dispatch(reset()) });
+            dispatch(reset());
             dispatch(getCurrentUser());
         }
     }, [isSuccess, message, navigate, dispatch]);
@@ -40,7 +41,11 @@ const AdminTwoFactorAuth = () => {
         if (user) {
             navigate("/admin/dashboard", { replace: true });
         }
-    }, [user]);
+        console.log(message);
+        if (message === "Your email address is not verified.") {
+            navigate("/email/verify");
+        }
+    }, [user, isError, isSuccess, message]);
 
     const handleOnChange = (event) => {
         setData({ ...data, [event.target.name]: event.target.value });
@@ -61,7 +66,7 @@ const AdminTwoFactorAuth = () => {
                             style={{ maxWidth: "540px" }}
                         >
                             <div className="card-body">
-                                <h1 className="text-center text-bold">
+                                <h1 className="text-center fw-bold">
                                     Two Factor Authentication
                                 </h1>
                                 <div className="my-2 ">
@@ -108,11 +113,9 @@ const AdminTwoFactorAuth = () => {
                                     </div>
                                     <div className="d-flex justify-content-between col-12 mx-auto">
                                         <button
-                                            className={`btn btn-${
-                                                isLoading
-                                                    ? "secondary"
-                                                    : "primary"
-                                            } btn-lg text-white px-4`}
+                                            className={`btn c-btn ${
+                                                isLoading ? "btn-secondary" : ""
+                                            } btn-lg`}
                                             type="submit"
                                             disabled={isLoading}
                                         >

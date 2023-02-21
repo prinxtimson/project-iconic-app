@@ -43,7 +43,7 @@ Route::post('/on-suspended', [SubscriptionController::class, 'on_suspended']);
 Route::post('/payment-failed', [SubscriptionController::class, 'payment_failed']);
 Route::get('analytics/bounce/{days}', [AnalysisController::class, 'bounce']);
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::group(['middleware' => ['auth:sanctum', '2fa', 'verified']], function () {
     
     Route::get('/me', [AuthController::class, 'me']);
     Route::get('/mark-notification', [AuthController::class, 'markNotification']);
@@ -99,9 +99,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::put('settings/update', [SettingController::class, 'update']);
 });
 
-Route::group(['middleware' => ['auth:sanctum', 'role:admin', 'verified']], function () {
+Route::group(['middleware' => ['auth:sanctum', '2fa', 'role:admin', 'verified']], function () {
     //
     Route::get('users', [UserController::class, 'index']);
+    Route::get('users/search', [UserController::class, 'search']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
     Route::put('/content/{id}', [ContentController::class, 'update']);
 
@@ -111,8 +112,9 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin', 'verified']], funct
     Route::delete('/subscription/delete/{id}', [SubscriptionController::class, 'destroy']);
 
     Route::get('report', [ReportController::class, 'index']);
+    Route::get('report/search', [ReportController::class, 'search']);
     Route::post('report', [ReportController::class, 'store']);
-    Route::get('report/{id}', [ReportController::class, 'show']);
+    Route::get('report/show/{id}', [ReportController::class, 'show']);
     Route::put('report/archived/{id}', [ReportController::class, 'archived']);
     Route::put('report/trashed/{id}', [ReportController::class, 'trashed']);
     Route::put('report/restored/{id}', [ReportController::class, 'restored']);

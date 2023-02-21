@@ -10,15 +10,17 @@ ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 const UserTypeChart = ({ userType, type }) => {
     const { t } = useTranslation(["dashboard"]);
     const [chartConfigs, setChartConfigs] = useState(null);
+    const color = ["#FFE0B2", "#E65100", "#FB8C00", "#E65100"];
 
     useEffect(() => {
         if (userType) {
             let data = [];
 
-            userType.map((item) => {
+            userType.map((item, index) => {
                 data.push({
                     label: item.type,
                     value: item.sessions,
+                    color: color[index],
                 });
             });
 

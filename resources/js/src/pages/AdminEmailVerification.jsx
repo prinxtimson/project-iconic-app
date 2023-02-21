@@ -38,7 +38,7 @@ const AdminEmailVerification = () => {
                             style={{ maxWidth: "540px" }}
                         >
                             <div className="card-body">
-                                <h1 className="text-center text-bold">
+                                <h1 className="text-center fw-bold">
                                     Email Verification
                                 </h1>
                                 {isError && (
@@ -57,24 +57,21 @@ const AdminEmailVerification = () => {
                                         confirm and verify your email address.
                                     </p>
                                 </div>
-                                {user && (
-                                    <div className="d-grid gap-2 col-12 mx-auto my-2">
-                                        <button
-                                            className={`btn btn-${
-                                                isLoading
-                                                    ? "secondary"
-                                                    : "primary"
-                                            } btn-lg text-white px-4`}
-                                            type="submit"
-                                            disabled={isLoading}
-                                            onClick={() =>
-                                                dispatch(resendVerification())
-                                            }
-                                        >
-                                            Resend Verification Email
-                                        </button>
-                                    </div>
-                                )}
+
+                                <div className="d-grid gap-2 col-12 mx-auto my-2">
+                                    <button
+                                        className={`btn c-btn ${
+                                            isLoading ? "btn-secondary" : ""
+                                        } btn-lg`}
+                                        type="submit"
+                                        disabled={isLoading}
+                                        onClick={() =>
+                                            dispatch(resendVerification())
+                                        }
+                                    >
+                                        Resend Verification Email
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

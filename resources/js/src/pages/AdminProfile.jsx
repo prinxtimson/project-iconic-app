@@ -19,7 +19,7 @@ const AdminProfile = () => {
         <AdminDashboardContainer>
             <div className="container">
                 <div className="my-4">
-                    <h1 className="card-title text-primary text-center">
+                    <h1 className="card-title fw-bold text-center">
                         Admin Profile
                     </h1>
                 </div>

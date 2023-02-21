@@ -182,8 +182,8 @@ export const updateSetting = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.response.data ||
-                err.response.data.message;
+                err.response.data.message ||
+                err.response.data;
 
             if (err.response.status === 401 || err.response.status === 403) {
                 localStorage.removeItem("elintx-user");
@@ -207,8 +207,8 @@ export const resendCode = createAsyncThunk(
                 (err.response &&
                     err.response.data &&
                     err.response.data.message) ||
-                err.response.data ||
-                err.response.data.message;
+                err.response.data.message ||
+                err.response.data;
 
             return thunkAPI.rejectWithValue(msg);
         }
@@ -227,8 +227,7 @@ export const getCurrentUser = createAsyncThunk("auth/me", async (thunkAPI) => {
         }
         const msg =
             (err.response && err.response.data && err.response.data.message) ||
-            err.message ||
-            err.toString();
+            err.message;
 
         return thunkAPI.rejectWithValue(msg);
     }
