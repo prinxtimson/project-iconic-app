@@ -21,7 +21,7 @@ const AdminHome = () => {
                 <div className="container h-100">
                     <div className="row align-items-center h-100">
                         <h1
-                            className="display-2 fw-bold text-center "
+                            className="display-3 fw-bold text-center "
                             //style={{ color: "blue" }}
                         >
                             {t("welcome")}
@@ -30,35 +30,26 @@ const AdminHome = () => {
                             <h2 className="fs-1 text-center">Elint-X</h2>
 
                             <p>
-                                ipsum lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum.
-                            </p>
-
-                            <p>
-                                lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum.
+                                Elint-X is focused on ensuring that users are
+                                provided with data trends that are consistent
+                                with the current AI market trends. Elint-X
+                                serves customers around the world and focuses on
+                                providing rich data that can be used by
+                                marketers, researchers, business start-ups and
+                                individuals to improve their decision making.
+                                Elint-X provides access to vital resources to
+                                enable a global community aggregate solution to
+                                real life challenges. Our mission is to ensure
+                                we create a platform that provides a superlative
+                                user experience for analysing real-world data
+                                empowering individuals to make cutting edge
+                                decisions.
                             </p>
                         </div>
                         <div className="col d-sm-none d-md-block">
                             <img
                                 style={{ width: "100%" }}
-                                src="/images/metrix.svg"
+                                src="/images/IoT-Analytics.jpg"
                                 alt="Metrix"
                             />
                         </div>

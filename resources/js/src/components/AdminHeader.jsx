@@ -103,7 +103,7 @@ const AdminHeader = () => {
                         <ul className="navbar-nav flex-row flex-wrap">
                             <li className="nav-item col-6 col-lg-auto">
                                 <Link
-                                    className="nav-link text-primary"
+                                    className="nav-link text-primary fw-bold text-center"
                                     to="/admin/login"
                                 >
                                     {t("header.nav_link_6")}
@@ -111,7 +111,7 @@ const AdminHeader = () => {
                             </li>
                             <li className="nav-item col-6 col-lg-auto">
                                 <Link
-                                    className="nav-link text-primary"
+                                    className="nav-link text-primary fw-bold text-center"
                                     to="/admin/register"
                                 >
                                     {t("header.nav_link_5")}
@@ -330,14 +330,14 @@ const AdminHeader = () => {
                     {!user && (
                         <div className="d-grid gap-2 d-md-block col-md-3 col-sm-6 col-xs-12">
                             <Link
-                                className="nav-link text-primary"
+                                className="nav-link text-primary text-center fw-bold"
                                 to="/admin/login"
                             >
                                 {t("header.nav_link_6")}
                             </Link>
                             <span className=" mx-2" />
                             <Link
-                                className="nav-link text-primary"
+                                className="nav-link text-primary fw-bold text-center"
                                 to="/admin/register"
                             >
                                 {t("header.nav_link_5")}

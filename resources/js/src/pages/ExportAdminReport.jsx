@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactGA from "react-ga";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import ShareDialog from "../components/ShareDialog";
 import AdminDashboardContainer from "../components/AdminDashboardContainer";
 import {
@@ -16,6 +17,8 @@ import Moment from "react-moment";
 
 const ExportAdminReport = () => {
     const { t } = useTranslation(["dashboard"]);
+    const location = useLocation();
+    const search = new URLSearchParams(location.search);
     const [filterReports, setReports] = useState([]);
     const [currentReport, setCurrentReport] = useState(null);
     const [data, setData] = useState({
@@ -42,8 +45,12 @@ const ExportAdminReport = () => {
         let newReports = reports.filter(
             (item) => !item.deleted_at && !item.is_archive
         );
+        const name = search.get("name");
+        if (name) {
+            newReports = reports.filter((item) => item.name == name);
+        }
         setReports(newReports);
-    }, [reports]);
+    }, [reports, location]);
 
     useEffect(() => {
         if (isSuccess) {

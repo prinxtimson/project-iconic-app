@@ -28,7 +28,7 @@ const SubscriptionTable = () => {
     useEffect(() => {
         if (isSuccess) {
             toast.success(message);
-            getUsers();
+            dispatch(getAllSubscription());
             dispatch(reset());
         }
 
@@ -41,7 +41,7 @@ const SubscriptionTable = () => {
     const handleDeletePlan = (id) => {
         if (
             window.confirm(
-                `You are about to delete subscription with userID ${id}, this can't be undone.`
+                `You are about to delete subscription with ID ${id}, this can't be undone.`
             )
         ) {
             dispatch(deleteSubscription(id));
@@ -87,8 +87,8 @@ const SubscriptionTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {!isLoading && subscriptions.length > 0 ? (
-                                    subscriptions.map((subscription) => (
+                                {subscriptions?.length > 0 ? (
+                                    subscriptions?.map((subscription) => (
                                         <tr
                                             key={subscription.id}
                                             className="align-middle"
@@ -98,25 +98,27 @@ const SubscriptionTable = () => {
                                             </th>
                                             <td>{subscription.user?.name}</td>
                                             <td>
-                                                <Moment format="lll">
+                                                <Moment format="ll">
                                                     {
-                                                        subscription.data
-                                                            ?.start_time
+                                                        JSON.parse(
+                                                            subscription.data
+                                                        )?.start_time
                                                     }
                                                 </Moment>
                                             </td>
                                             <td>
-                                                <Moment format="lll">
+                                                <Moment format="ll">
                                                     {
-                                                        subscription.data
-                                                            ?.billing_info
+                                                        JSON.parse(
+                                                            subscription.data
+                                                        )?.billing_info
                                                             ?.next_billing_time
                                                     }
                                                 </Moment>
                                             </td>
                                             <td>{subscription.status}</td>
                                             <td>
-                                                <Moment>
+                                                <Moment format="ll">
                                                     {subscription.created_at}
                                                 </Moment>
                                             </td>

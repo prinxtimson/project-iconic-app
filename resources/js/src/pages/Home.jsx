@@ -48,7 +48,7 @@ const Home = () => {
                         <div className="col d-sm-none d-md-block">
                             <img
                                 style={{ width: "100%" }}
-                                src="/images/metrix.svg"
+                                src="/images/IoT-Analytics.jpg"
                                 alt="Metrix"
                             />
                         </div>

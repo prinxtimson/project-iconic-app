@@ -130,7 +130,7 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $users = User::where('name','LIKE','%'.$request->search."%")->orWhere('email','LIKE','%'.$request->search."%")->orWhere('username','LIKE','%'.$request->search."%")->get();
+        $users = User::where('name','LIKE','%'.$request->search."%")->orWhere('email','LIKE','%'.$request->search."%")->orWhere('username','LIKE','%'.$request->search."%")->role('user')->get();
 
         return $users;
     }

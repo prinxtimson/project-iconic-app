@@ -49,7 +49,7 @@ const SearchDialog = ({ searchResult, handleOnClose }) => {
                                                 <li key={index} className="">
                                                     <div className="">
                                                         <Link
-                                                            to={`#`}
+                                                            to={`/admin/dashboard/manage-users?email=${result.email}`}
                                                             onClick={() =>
                                                                 closeBtnRef.current.click()
                                                             }
@@ -78,7 +78,7 @@ const SearchDialog = ({ searchResult, handleOnClose }) => {
                                                 <li key={index} className="">
                                                     <div className="">
                                                         <Link
-                                                            to={`#`}
+                                                            to={`/admin/dashboard/analytics/export-report?name=${result.name}`}
                                                             onClick={() =>
                                                                 closeBtnRef.current.click()
                                                             }

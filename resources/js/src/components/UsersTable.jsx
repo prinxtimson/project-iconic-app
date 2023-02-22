@@ -3,6 +3,7 @@ import ReactGA from "react-ga";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import {
     deactivateUser,
     activateUser,
@@ -12,8 +13,12 @@ import {
 
 const axios = window.axios;
 
-const UsersTable = () => {
+const UsersTable = ({ navigation }) => {
     const { t } = useTranslation(["dashboard"]);
+
+    const location = useLocation();
+    const search = new URLSearchParams(location.search);
+
     const [users, setUsers] = useState([]);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -32,17 +37,28 @@ const UsersTable = () => {
     }, []);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(reset());
-        }, 3000);
+        const email = search.get("email");
+        console.log(email);
+        if (email) {
+            setUsers(data.filter((item) => item.email == email));
+        } else {
+            let filteredUser = data.filter(
+                (item) => item.roles[0] && item.roles[0]?.name == "user"
+            );
+            setUsers(filteredUser);
+        }
+    }, [location]);
 
+    useEffect(() => {
         if (isSuccess) {
-            message && toast.success(message);
+            message &&
+                toast.success(message, { onClose: () => dispatch(reset()) });
             getUsers();
         }
 
         if (isError) {
-            message && toast.error(message);
+            message &&
+                toast.error(message, { onClose: () => dispatch(reset()) });
         }
 
         if (alert && alert.type == "danger") {
@@ -54,11 +70,16 @@ const UsersTable = () => {
     const getUsers = async () => {
         try {
             const res = await axios.get("/api/users");
-            const filteredUser = res.data.filter(
+            let filteredUser = res.data.filter(
                 (item) => item.roles[0] && item.roles[0]?.name == "user"
             );
+            const email = search.get("email");
+            if (email) {
+                filteredUser = res.data.filter((item) => item.email == email);
+            }
             setUsers(filteredUser);
             setData(filteredUser);
+
             setLoading(false);
         } catch (err) {
             console.log(err.response);

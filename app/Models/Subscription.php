@@ -13,6 +13,7 @@ class Subscription extends Model
         'order_id',
         'subscription_id',
         'data',
+        'status',
         'user_id'
     ];
 
