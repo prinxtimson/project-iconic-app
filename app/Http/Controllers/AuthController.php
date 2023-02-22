@@ -151,7 +151,7 @@ class AuthController extends Controller
         );
             
         if ($status === Password::RESET_LINK_SENT) {
-            return response('Password reset link had been sent to your email');
+            return response('Password reset link sent to your email');
         }
         return response($status, 400);
     } catch (Exception $e) {

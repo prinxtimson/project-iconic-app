@@ -282,7 +282,7 @@ const ExportAdminReport = () => {
                                                                         )
                                                                     }
                                                                 >
-                                                                    Trashed
+                                                                    Trash
                                                                 </button>
                                                             </li>
                                                         </ul>
