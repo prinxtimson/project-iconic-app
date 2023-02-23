@@ -186,10 +186,11 @@ const AdminRegistration = () => {
                                             className="form-text"
                                         >
                                             Your password must be 8-12
-                                            characters long, contain letters and
-                                            numbers, and must not contain
-                                            spaces, special characters, or
-                                            emoji.
+                                            characters long, contain letters,
+                                            special characters, at least one
+                                            uppercase letter, at least one
+                                            lowercase letter and numbers, and
+                                            must not contain spaces or emoji.
                                         </div>
                                     </div>
 
